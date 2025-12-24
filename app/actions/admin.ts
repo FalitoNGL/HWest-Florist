@@ -1,8 +1,13 @@
 'use server'
 
 import { prisma } from "@/lib/prisma";
-import { Order, OrderItem, OrderStatus } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+
+// Type inference from Prisma
+type Order = Prisma.OrderGetPayload<{}>;
+type OrderItem = Prisma.OrderItemGetPayload<{}>;
+type OrderStatus = Prisma.OrderUpdateInput['status'];
 
 export type SerializedOrderItem = Omit<OrderItem, 'price'> & {
     price: number;
