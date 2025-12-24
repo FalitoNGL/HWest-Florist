@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Florist Portal - Upload Proof of Delivery</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec49",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102215",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a3322",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200 overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Sidebar -->
+<aside class="hidden md:flex flex-col w-64 h-full border-r border-slate-200 dark:border-slate-800 bg-background-light dark:bg-surface-dark transition-colors duration-200">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="relative bg-center bg-no-repeat bg-cover rounded-full size-10 shrink-0 shadow-sm" data-alt="Abstract floral pattern logo in green" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCJW6aAsKS0ej9ScHsqY2zuZuspGR73iFVlCpfphoi33Z_kKqPyQS0ZxBaMMCJ09aNmNx-CAAukPItsmMCAQ11KYV5n_Z8JgtCRrzqv-a0FtVRh4cifPYXMYqfsmRQUnRg1qvsKxV6M19YrQdwDjLiWv2Fq4AUh3pHZ7nEQYzHp9yHw6_KpEQpmtiBOCadcpnau42CKR9OER1sRYogodHfhfnWB-0SAufOasBamLd80ER8QYCZd9YK_V486hmEMIivMGo_RJF7Cxh6");'>
+<div class="absolute inset-0 rounded-full bg-primary/20"></div>
+</div>
+<h1 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Florist Portal</h1>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">assignment</span>
+<span class="text-sm font-medium">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/20 text-slate-900 dark:text-white font-semibold" href="#">
+<span class="material-symbols-outlined icon-filled text-emerald-700 dark:text-primary">local_shipping</span>
+<span class="text-sm">Deliveries</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">local_florist</span>
+<span class="text-sm font-medium">Products</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden" data-alt="User avatar placeholder">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNVwROvNHNGcB8GBfrPxh_4_Gx2xrZtnZpt22M7_bbxCi9muWrlL8NgSOgl7hAE3P_5cr0uVTKp0NQ9CQa8WJqtK95rWalBhjFGsdHNnjPlKwphH1bBjGYepar29v0w7wE5OkpDXf8bmGf4oVWt2ukX0_61M7NHcRsl22WJ1jdlzLVfUpjAKB9gNwPjBIUEJJ570GF8WpeDbKblW1wnyJglm0HeT8JysMccpGRgKd4IL4-ZjXyRcli7PBRl-O0VkwXfriq3Tn4i_pH"/>
+</div>
+<div class="flex flex-col">
+<p class="text-sm font-medium text-slate-900 dark:text-white">Mike Driver</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Logistics</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto bg-white dark:bg-background-dark relative">
+<!-- Mobile Header (Visible only on small screens) -->
+<div class="md:hidden flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_florist</span>
+<span class="font-bold">Florist Portal</span>
+</div>
+<button class="text-slate-500"><span class="material-symbols-outlined">menu</span></button>
+</div>
+<div class="max-w-7xl mx-auto w-full p-6 md:p-8 lg:p-12">
+<!-- Breadcrumbs -->
+<nav class="flex flex-wrap gap-2 mb-6 items-center text-sm">
+<a class="text-emerald-600 dark:text-emerald-400 font-medium hover:underline flex items-center gap-1" href="#">
+                        Deliveries
+                    </a>
+<span class="text-slate-400 dark:text-slate-600">/</span>
+<a class="text-emerald-600 dark:text-emerald-400 font-medium hover:underline" href="#">
+                        Order #FL-2023-998
+                    </a>
+<span class="text-slate-400 dark:text-slate-600">/</span>
+<span class="text-slate-900 dark:text-slate-100 font-medium">Proof of Delivery</span>
+</nav>
+<!-- Page Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Upload Proof of Delivery</h1>
+<p class="text-slate-500 dark:text-slate-400 max-w-2xl">
+                            Confirm delivery details below and upload visual proof for the customer to complete the order.
+                        </p>
+</div>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-semibold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px]">schedule</span> Pending
+                         </span>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Order Summary -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Order Details Card -->
+<div class="bg-background-light dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 dark:text-primary">receipt_long</span>
+                                Order Summary
+                            </h3>
+<div class="flex flex-col gap-4">
+<div class="grid grid-cols-[100px_1fr] items-start gap-2 text-sm border-b border-slate-200 dark:border-slate-700 pb-4">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Order ID</span>
+<span class="text-slate-900 dark:text-white font-mono">FL-2023-998</span>
+</div>
+<div class="grid grid-cols-[100px_1fr] items-start gap-2 text-sm border-b border-slate-200 dark:border-slate-700 pb-4">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Recipient</span>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-medium">Sarah Jenkins</span>
+<span class="text-emerald-600 dark:text-emerald-400 text-xs hover:underline cursor-pointer flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">call</span> (555) 123-4567
+                                        </span>
+</div>
+</div>
+<div class="grid grid-cols-[100px_1fr] items-start gap-2 text-sm pb-2">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Address</span>
+<div class="flex flex-col gap-2">
+<span class="text-slate-900 dark:text-white">123 Blossom Lane, Springfield, IL 62704</span>
+<!-- Mini Map Placeholder -->
+<div class="w-full h-32 bg-slate-200 dark:bg-slate-700 rounded-lg overflow-hidden relative" data-location="Springfield, IL" style="https://lh3.googleusercontent.com/aida-public/AB6AXuBY-DUiocfErHaF4IxzE9wm6NfMvtD3rJzgFdcrfG2RlTENMrq8JD3eSwl_nU61R4jS39VvO6NRDPxNuS561vzJ-lREQzn-bdzlGuY7SrJ2wjNBwzS8h1Soziok6fWCyKYDSiwW-C4DxVaxDueNFn3QwdhccHWPi46cFea_w9lJN0v-ZZq1V7sc3Q0Zw4hqk92qsG0EJI74FAu5NAt6UnQUB1Evp_w15jRaiB2ueGoiYvtczKboM90nqpWAJUiCTq4yXqAyxKaOT8UM">
+<div class="absolute inset-0 bg-cover bg-center opacity-70" data-alt="Map view of Springfield showing delivery location" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCqZEpjEBX8o8E-54p-iZTsDz5UrTjBHkX6aWmTxl70O4KbdFMRFSmrcQ_RsIKYKQpWiv_vSyBhqxIOmLtLZ1Y_PWn0QfDpjqU05aXrajTHO9zEU8MLWTJ8DY7sDVo4TrCuLN3OFseuBGU1rNcIJS0FRqG3GdVpRHs7o8oAuYZZzshTOpwrlEbJWZmyCerNrR_NaYeiXWFexe9VZf8gFu1hiOiKeaQiK3KlWaRgdZLI2DbIbJUCIj8eFJidJ27FUxW3ueFK1NXe2_ZN');">
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-500 text-4xl drop-shadow-lg icon-filled">location_on</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Items List -->
+<div class="bg-background-light dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 dark:text-primary">local_florist</span>
+                                Items to Deliver
+                            </h3>
+<ul class="flex flex-col gap-3">
+<li class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0 border border-slate-200 dark:border-slate-700">
+<div class="w-full h-full bg-cover bg-center" data-alt="Red Rose Bouquet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDamazoeXRxlsCrSuoMTguZMIT8EhxUlTN2xCKShoCDSTJxlxUlaY8rFsnYM96x-hIxmFK0a_QwNM1V3O6A77uUzgaZlJF022aXQuh44p2tVOinyBADjjZdFIrxDXKAwGYxtOLqhv71mJr_7QF0JVtT8MJBat_vl5h67aJ6qfko6mcLqic6s_oK3fFH2mSod35IPwuZlGiIbPbojwYwl5F8FLLVcdmKZReB_SKa9w1EvD9YFq8G5MzB9xemOnp0ZKPabVkylI4gw6ob');"></div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Classic Red Rose Bouquet</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Qty: 1 • Size: Large</p>
+</div>
+</li>
+<li class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0 border border-slate-200 dark:border-slate-700">
+<div class="w-full h-full bg-cover bg-center" data-alt="Birthday Card" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBsKgK_MSYO1baCxJE7QDuku-cB5EBjqDdHADxIdRHJ3I_w0w6a7P9lonUhAdiRxiZEz0VLwOpnl2FxGjn4rrMioJ-BP0k5EWWlOB03Zkg2SY6vhHrhfo0c3xjoyKL1x8A8MiWoeUCbwZoLiwdxwEZaDtBQ6KPCakCRzu1aFPKvscqMCMbqZbCLocDKjkNDxBBAJbtLXfKY0_aFQdrS_c6jVuSF-61iAwpVQDA0GVlfRuEzuA1Gn__W-5EGU7B_EuA9MY7-8j_0Nt1E');"></div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Birthday Greeting Card</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Qty: 1 • Custom Message</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- Right Column: Upload Action -->
+<div class="lg:col-span-7 flex flex-col h-full">
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col h-full overflow-hidden">
+<div class="p-6 md:p-8 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Proof of Delivery</h2>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">Required</span>
+</div>
+<!-- Upload Zone -->
+<div class="group relative flex-1 min-h-[300px] w-full border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl bg-slate-50 dark:bg-background-dark hover:border-primary dark:hover:border-primary hover:bg-emerald-50/30 dark:hover:bg-emerald-900/10 transition-all duration-300 flex flex-col items-center justify-center text-center cursor-pointer p-8">
+<!-- Visual Cue -->
+<div class="mb-4 p-4 bg-white dark:bg-surface-dark rounded-full shadow-sm group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-4xl text-emerald-600 dark:text-primary">add_a_photo</span>
+</div>
+<p class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Drag &amp; drop proof here</p>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6">or click to browse your files</p>
+<div class="flex gap-4 text-xs text-slate-400 dark:text-slate-500">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">image</span> JPG, PNG</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">hard_drive</span> Max 5MB</span>
+</div>
+<input accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="file"/>
+</div>
+<!-- Notes Field -->
+<div class="mt-6">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="notes">Delivery Notes (Optional)</label>
+<div class="relative">
+<textarea class="w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary placeholder-slate-400 resize-none" id="notes" placeholder="e.g. Left on the front porch behind the pillar..." rows="3"></textarea>
+<span class="absolute right-3 bottom-3 text-slate-400 pointer-events-none">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="p-6 md:p-8 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-background-dark/50 flex flex-col-reverse sm:flex-row items-center justify-end gap-4">
+<button class="w-full sm:w-auto px-6 py-3 rounded-lg text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                    Cancel
+                                </button>
+<button class="w-full sm:w-auto px-8 py-3 rounded-lg text-sm font-bold bg-primary text-background-dark hover:bg-[#00d636] shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                                    Complete Delivery
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

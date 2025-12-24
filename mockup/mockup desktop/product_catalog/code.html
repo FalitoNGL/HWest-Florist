@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Florist Portal - Product Catalog</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec49",
+                        "background-light": "#f8fcf9",
+                        "background-dark": "#102215",
+                        "text-main": "#0d1b11",
+                        "text-secondary": "#4c9a5f",
+                        "accent-light": "#e7f3ea",
+                        "border-color": "#cfe7d5",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cfe7d5; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4c9a5f; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display h-screen w-full flex overflow-hidden">
+<!-- SIDEBAR NAVIGATION -->
+<aside class="w-64 flex-shrink-0 border-r border-[#e7f3ea] bg-[#f8fcf9] flex flex-col h-full">
+<div class="p-4 flex flex-col h-full justify-between">
+<div class="flex flex-col gap-6">
+<!-- Logo Area -->
+<div class="flex gap-3 items-center px-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 shadow-sm" data-alt="Stylized green flower logo abstract" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBLAbR-agCDsTnw_ITs_1bpfWBhbPlz0dVOnUE0JJiwoEzl2arj6HgFa75UwSmlUp2I9TtFtUH8J4jHA7I8scRBneDb10Q-1eBDTvQS6l3YEOyg-sZqIwsaMZeEWZvaA30OMWIsX1lWzlKxky9oJ_W_SYHLxJBowjswDmr82Z_imHtj1OVkddCiZqYHK2wfKjmxGjjrQ9wXxcxoi5sU9sMNTS1vdADTzWxumtxJZUoZWay0E3MjkU9zLFMMiOwRrlRmr8MpwOynBPQX");'></div>
+<h1 class="text-[#0d1b11] text-lg font-bold leading-normal">Bloom Enterprise</h1>
+</div>
+<!-- Nav Links -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#e7f3ea] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#0d1b11] group-hover:text-[#4c9a5f]">home</span>
+<p class="text-[#0d1b11] text-sm font-medium leading-normal">Overview</p>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-[#e7f3ea]" href="#">
+<span class="material-symbols-outlined text-[#0d1b11] fill-current">local_florist</span>
+<p class="text-[#0d1b11] text-sm font-medium leading-normal">Catalog</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#e7f3ea] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#0d1b11] group-hover:text-[#4c9a5f]">local_shipping</span>
+<p class="text-[#0d1b11] text-sm font-medium leading-normal">Deliveries</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#e7f3ea] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#0d1b11] group-hover:text-[#4c9a5f]">inventory_2</span>
+<p class="text-[#0d1b11] text-sm font-medium leading-normal">Inventory</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#e7f3ea] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#0d1b11] group-hover:text-[#4c9a5f]">bar_chart</span>
+<p class="text-[#0d1b11] text-sm font-medium leading-normal">Analytics</p>
+</a>
+</nav>
+</div>
+<!-- Bottom Nav -->
+<div class="flex flex-col gap-2 border-t border-[#e7f3ea] pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#e7f3ea] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#0d1b11] group-hover:text-[#4c9a5f]">settings</span>
+<p class="text-[#0d1b11] text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#e7f3ea] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#0d1b11] group-hover:text-[#4c9a5f]">logout</span>
+<p class="text-[#0d1b11] text-sm font-medium leading-normal">Log Out</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- MAIN CONTENT -->
+<main class="flex-1 flex flex-col h-full min-w-0 bg-white">
+<!-- TOP HEADER -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7f3ea] px-8 py-4 bg-[#f8fcf9]">
+<div class="flex items-center gap-4 w-1/3">
+<label class="flex flex-col w-full max-w-md h-10">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-[#cfe7d5] focus-within:border-[#4c9a5f] bg-white overflow-hidden transition-colors">
+<div class="text-[#4c9a5f] flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden text-[#0d1b11] focus:outline-0 bg-transparent placeholder:text-[#4c9a5f]/70 px-3 text-sm font-normal leading-normal" placeholder="Search catalog..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-end gap-6">
+<button class="relative text-[#0d1b11] hover:text-[#4c9a5f] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-[#f8fcf9]"></span>
+</button>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-[#0d1b11]">Sarah Green</p>
+<p class="text-xs text-[#4c9a5f]">Store Manager</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-[#cfe7d5]" data-alt="Portrait of a female florist smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBclo3w5VP-DO_HCZ0HvmWRLbYtb2VGJGw4-2M2qUQjNANClKgEKeXOsvW7A2EdC1AVY4vCwJ-q_VW5E4NY_8WbCB1tOz943UrFCm-3QCI4Npr8Ck1SbFayOlHXYiHYoo_m687UxHiy6iWW9pQryWRP1tJfczAIDXCQRGlkoGkSFZvHs67kHimOZuv_MhZZd1bnPxA6ON0biOvlFuHeZgevP6XGS_qZ3Tm4b9CJvorXK-Ow_ssitF1QqUSbUvPuarnUpSf6_LDjxBu4");'></div>
+</div>
+</div>
+</header>
+<!-- PAGE SCROLL AREA -->
+<div class="flex-1 overflow-y-auto bg-[#f8fcf9] p-8">
+<div class="max-w-[1400px] mx-auto flex flex-col gap-8">
+<!-- HEADING & ACTIONS -->
+<div class="flex flex-wrap justify-between items-end gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-[#0d1b11] text-3xl font-black leading-tight tracking-[-0.033em]">Product Catalog</h1>
+<p class="text-[#4c9a5f] text-base font-normal">Manage your flowers, vases, and arrangements inventory.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-white border border-[#cfe7d5] text-[#0d1b11] text-sm font-bold shadow-sm hover:bg-[#e7f3ea] transition-colors">
+<span class="material-symbols-outlined text-lg">cloud_upload</span>
+<span>Import</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-[#0d1b11] text-sm font-bold shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Add New Product</span>
+</button>
+</div>
+</div>
+<!-- TOOLBAR -->
+<div class="flex flex-col sm:flex-row gap-4 justify-between items-center bg-white p-4 rounded-xl border border-[#e7f3ea] shadow-sm">
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<!-- Sort By -->
+<div class="relative min-w-[180px]">
+<select class="appearance-none w-full bg-[#f8fcf9] border border-[#cfe7d5] text-[#0d1b11] text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 pr-8 cursor-pointer">
+<option>Sort by: Newest</option>
+<option>Sort by: Price (Low to High)</option>
+<option>Sort by: Price (High to Low)</option>
+<option>Sort by: Best Selling</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2.5 text-[#4c9a5f] pointer-events-none">expand_more</span>
+</div>
+<span class="h-6 w-px bg-[#e7f3ea]"></span>
+<div class="text-sm text-[#4c9a5f] font-medium"><span class="text-[#0d1b11] font-bold">124</span> Products found</div>
+</div>
+<!-- View Toggle -->
+<div class="flex bg-[#e7f3ea] p-1 rounded-lg">
+<button class="p-1.5 rounded-md bg-white text-[#0d1b11] shadow-sm transition-all hover:text-primary">
+<span class="material-symbols-outlined text-xl">grid_view</span>
+</button>
+<button class="p-1.5 rounded-md text-[#4c9a5f] hover:text-[#0d1b11] transition-all">
+<span class="material-symbols-outlined text-xl">view_list</span>
+</button>
+</div>
+</div>
+<!-- CONTENT SPLIT -->
+<div class="flex flex-col lg:flex-row gap-8 items-start h-full">
+<!-- FILTERS SIDEBAR -->
+<aside class="w-full lg:w-64 flex-shrink-0 flex flex-col gap-6">
+<!-- Filter Group: Categories -->
+<div class="flex flex-col gap-3">
+<h3 class="text-[#0d1b11] font-bold text-sm uppercase tracking-wider">Categories</h3>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded border-[#cfe7d5] text-primary focus:ring-primary/20 cursor-pointer" type="checkbox"/>
+<span class="text-[#0d1b11] text-sm group-hover:text-primary transition-colors">All Products</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-[#cfe7d5] text-primary focus:ring-primary/20 cursor-pointer" type="checkbox"/>
+<span class="text-[#4c9a5f] text-sm group-hover:text-primary transition-colors">Fresh Bouquets</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-[#cfe7d5] text-primary focus:ring-primary/20 cursor-pointer" type="checkbox"/>
+<span class="text-[#4c9a5f] text-sm group-hover:text-primary transition-colors">Single Stems</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-[#cfe7d5] text-primary focus:ring-primary/20 cursor-pointer" type="checkbox"/>
+<span class="text-[#4c9a5f] text-sm group-hover:text-primary transition-colors">Vases &amp; Pots</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-[#cfe7d5] text-primary focus:ring-primary/20 cursor-pointer" type="checkbox"/>
+<span class="text-[#4c9a5f] text-sm group-hover:text-primary transition-colors">Gift Sets</span>
+</label>
+</div>
+</div>
+<hr class="border-[#e7f3ea]"/>
+<!-- Filter Group: Price -->
+<div class="flex flex-col gap-3">
+<h3 class="text-[#0d1b11] font-bold text-sm uppercase tracking-wider">Price Range</h3>
+<div class="px-1 py-2">
+<input class="w-full h-1 bg-[#cfe7d5] rounded-lg appearance-none cursor-pointer accent-primary" max="500" min="0" type="range"/>
+<div class="flex justify-between mt-2 text-xs font-medium text-[#4c9a5f]">
+<span>$0</span>
+<span>$500+</span>
+</div>
+</div>
+</div>
+<hr class="border-[#e7f3ea]"/>
+<!-- Filter Group: Availability -->
+<div class="flex flex-col gap-3">
+<h3 class="text-[#0d1b11] font-bold text-sm uppercase tracking-wider">Availability</h3>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="w-4 h-4 border-[#cfe7d5] text-primary focus:ring-primary/20 cursor-pointer" name="stock" type="radio"/>
+<span class="text-[#0d1b11] text-sm">Any Status</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-4 h-4 border-[#cfe7d5] text-primary focus:ring-primary/20 cursor-pointer" name="stock" type="radio"/>
+<span class="text-[#4c9a5f] text-sm">In Stock</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-4 h-4 border-[#cfe7d5] text-primary focus:ring-primary/20 cursor-pointer" name="stock" type="radio"/>
+<span class="text-[#4c9a5f] text-sm">Low Stock</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-4 h-4 border-[#cfe7d5] text-primary focus:ring-primary/20 cursor-pointer" name="stock" type="radio"/>
+<span class="text-[#4c9a5f] text-sm">Out of Stock</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- PRODUCT GRID -->
+<div class="flex-1">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Product Card 1 -->
+<div class="group bg-white rounded-xl border border-[#e7f3ea] overflow-hidden hover:shadow-[0_4px_12px_rgba(19,236,73,0.1)] hover:border-primary/30 transition-all duration-200 flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-[#f8fcf9]">
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2 py-1 rounded bg-primary text-[#0d1b11] text-xs font-bold uppercase tracking-wide">In Stock</span>
+</div>
+<div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-2">
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</div>
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Vibrant bouquet of sunflowers and yellow roses" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCWTs-IM5NEs-qp2RkvDjhr-mlLGL8QJKGGBETP-xZj7kx5T5Sx3qkFgv7JfEeBBKCB8mRIVUnfSBAmvFppQhZkkthlV5hqx2-DeUTWD5sTAv8y6glMLBSaXKT9dYr4f5swgz65OhYjd-YibdJOJVqOwPKR5cqSEgnNtsRA5p15lDUfwUzac1_kwSQOzzb1QEFWaNLeIIksChSTJA7PVniJpDT76ULzDAKmAuDwEfezCSRI9mSBSDNDT-drVZ5BcVeg7eq29cVHec0z");'></div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div>
+<p class="text-xs font-bold text-[#4c9a5f] uppercase">Bouquets</p>
+<h3 class="text-[#0d1b11] font-bold text-lg leading-tight group-hover:text-primary transition-colors">Summer Sunshine</h3>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#0d1b11] font-black text-xl">$45.00</span>
+<span class="text-xs text-[#4c9a5f] font-medium bg-[#e7f3ea] px-2 py-1 rounded">Qty: 12</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group bg-white rounded-xl border border-[#e7f3ea] overflow-hidden hover:shadow-[0_4px_12px_rgba(19,236,73,0.1)] hover:border-primary/30 transition-all duration-200 flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-[#f8fcf9]">
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2 py-1 rounded bg-[#e7f3ea] text-[#4c9a5f] text-xs font-bold uppercase tracking-wide">Low Stock</span>
+</div>
+<div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-2">
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</div>
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Classic bouquet of deep red roses" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBi9LUUbI2UTQqjTqpPVgIr1aJitlWK1iYHegatWAMD2RN6oWPH8GQJDgV5zZV6YCER1fqolRobjqxyaF73fkUUIHxMf-3ChrxnqRmlpXNQxM-Rh9AEI4V4s4DWs2-5R0qieR80nGJyCY3TbjP5UnzAAPdRH49Ggn4V9OG4fPWwAY1yyu-p9ZgbGTT0FAe6mAEodxyRn6_VePv07a3iYXvmc68utNEaiktuZX_PWTuMEDVVv5XctLKGBm47fv30BxkaDnnWD7ErnOsc");'></div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div>
+<p class="text-xs font-bold text-[#4c9a5f] uppercase">Roses</p>
+<h3 class="text-[#0d1b11] font-bold text-lg leading-tight group-hover:text-primary transition-colors">Red Velvet (Dozen)</h3>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#0d1b11] font-black text-xl">$60.00</span>
+<span class="text-xs text-orange-600 font-medium bg-orange-50 px-2 py-1 rounded">Qty: 3</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group bg-white rounded-xl border border-[#e7f3ea] overflow-hidden hover:shadow-[0_4px_12px_rgba(19,236,73,0.1)] hover:border-primary/30 transition-all duration-200 flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-[#f8fcf9]">
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2 py-1 rounded bg-[#f3f4f6] text-gray-500 text-xs font-bold uppercase tracking-wide">Out of Stock</span>
+</div>
+<div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-2">
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</div>
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500 grayscale opacity-80" data-alt="Elegant white ceramic vase minimalist style" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDl9l-GGRQHUINAwrHCvQqsv5LmNZPhhzfonqtFclqJO-n415hvmWVO62xwiOz6qQ8myjh04ThUurXTZtLDxrTJqIDknlS3CLgMM6xrpZ-MsebBMn09Ch9q-au7Z1KEbjTdhfp0yczk3Bec5r7HcrAZbCVIyWPhzd_SKbJNLbC26fWcgYhMhmtl74fGsRj9gaZVJ0-v_gCbmvPSZgJDwu53r1i0ZwZHNvjFvFXlTbTRmEcSVxAoLTq4UisdeQ7QMTyyBRqdTroY42mw");'></div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div>
+<p class="text-xs font-bold text-[#4c9a5f] uppercase">Vases</p>
+<h3 class="text-[#0d1b11] font-bold text-lg leading-tight group-hover:text-primary transition-colors">Minimalist Ceramic</h3>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#0d1b11] font-black text-xl">$15.00</span>
+<span class="text-xs text-red-500 font-medium bg-red-50 px-2 py-1 rounded">Qty: 0</span>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group bg-white rounded-xl border border-[#e7f3ea] overflow-hidden hover:shadow-[0_4px_12px_rgba(19,236,73,0.1)] hover:border-primary/30 transition-all duration-200 flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-[#f8fcf9]">
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2 py-1 rounded bg-primary text-[#0d1b11] text-xs font-bold uppercase tracking-wide">In Stock</span>
+</div>
+<div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-2">
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</div>
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Pink tulips bouquet top view" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB1aTNzbkHxJi0oIvdU0mIpa5VbPPf5xge6LJui9jOwnkBGQePv7tnsVzI7CB77VKOxS9P5XF-0u_PolL7XdPosgX7rpFPh7tp3AXR2NaKnpULGddmwJbLM7Aav7PQ5h32I3eqxNR7Rz9BBbHWowuefPbATnB6rSKO6Gn9a3-Fr34TmZUbPJbFiwGA-VmGwsOvyiQVRTpu9cgE54j2aKNHpEbE3BnWpIvOxdAEl2jWWbm3_upAgwkbEQ3Jf-vcNc2UOvpPS9oWfwQXe");'></div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div>
+<p class="text-xs font-bold text-[#4c9a5f] uppercase">Bouquets</p>
+<h3 class="text-[#0d1b11] font-bold text-lg leading-tight group-hover:text-primary transition-colors">Pink Tulip Dream</h3>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#0d1b11] font-black text-xl">$38.00</span>
+<span class="text-xs text-[#4c9a5f] font-medium bg-[#e7f3ea] px-2 py-1 rounded">Qty: 42</span>
+</div>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group bg-white rounded-xl border border-[#e7f3ea] overflow-hidden hover:shadow-[0_4px_12px_rgba(19,236,73,0.1)] hover:border-primary/30 transition-all duration-200 flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-[#f8fcf9]">
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2 py-1 rounded bg-primary text-[#0d1b11] text-xs font-bold uppercase tracking-wide">In Stock</span>
+</div>
+<div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-2">
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</div>
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Fresh eucalyptus leaves stems" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBUAGRz1P_EbpbfFc3E84lEUI0UkUQDbvIRhTQgaMcSDqEjf7j08T80R9FTlPHQjh9maUsP6raiSLJ23qrKKr5XMbvLvyzQdFUIkhwAqzZ28ps4vyb4O74OF41dRJwX4ZVnLxNlLpSQ9wUAzAlfHhtVLw4jgG3nOgmKh1C7quIrAHpk-A_J_PIq7X-Kbh_pcy8QK8F9PNa0PEhFy4brSaqBkTeU0pemCupSFkWO84mqafPo4vSK1pyw1-_VC19QjoBTkcfnjMlm3Sn3");'></div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div>
+<p class="text-xs font-bold text-[#4c9a5f] uppercase">Greenery</p>
+<h3 class="text-[#0d1b11] font-bold text-lg leading-tight group-hover:text-primary transition-colors">Fresh Eucalyptus</h3>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#0d1b11] font-black text-xl">$12.50</span>
+<span class="text-xs text-[#4c9a5f] font-medium bg-[#e7f3ea] px-2 py-1 rounded">Qty: 100+</span>
+</div>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group bg-white rounded-xl border border-[#e7f3ea] overflow-hidden hover:shadow-[0_4px_12px_rgba(19,236,73,0.1)] hover:border-primary/30 transition-all duration-200 flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-[#f8fcf9]">
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2 py-1 rounded bg-primary text-[#0d1b11] text-xs font-bold uppercase tracking-wide">In Stock</span>
+</div>
+<div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-2">
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="size-8 rounded-full bg-white shadow-md flex items-center justify-center text-[#0d1b11] hover:text-primary hover:bg-[#f8fcf9] transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</div>
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Dried lavender bunch" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB8aEtYQdV-3uuxrgaLtKte65IcPnONNdAZ3BKNZXrbFoPd7bXjxAgxe7bCFG2Wf6nU0GWKdd2LSwWNZHd5a6RDw_krU6S6739W3b2lh9QchTev6ttjMOMiZNpBvUyUZYsvQUV9A0uM9Qq6AbBQNIFYtv0ybbE9K3y4-UF3TZHXKrcpfuEOFKBESomQzLZKp9EJ90W3UF842nqQ3e-2Gu9Ls0wbWvqBtdLWR0qQHjRPlPwUKql3citRcHK7DpgNRa058xjmtqcaaumG");'></div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div>
+<p class="text-xs font-bold text-[#4c9a5f] uppercase">Dried Flowers</p>
+<h3 class="text-[#0d1b11] font-bold text-lg leading-tight group-hover:text-primary transition-colors">French Lavender</h3>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#0d1b11] font-black text-xl">$22.00</span>
+<span class="text-xs text-[#4c9a5f] font-medium bg-[#e7f3ea] px-2 py-1 rounded">Qty: 55</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PAGINATION -->
+<div class="mt-8 flex items-center justify-between border-t border-[#e7f3ea] pt-6">
+<span class="text-sm text-[#4c9a5f]">Showing <span class="font-bold text-[#0d1b11]">1-6</span> of <span class="font-bold text-[#0d1b11]">124</span> products</span>
+<div class="flex gap-2">
+<button class="flex items-center justify-center size-9 rounded-lg border border-[#e7f3ea] bg-white text-[#4c9a5f] hover:bg-[#e7f3ea] hover:text-[#0d1b11] transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="flex items-center justify-center size-9 rounded-lg bg-primary text-[#0d1b11] font-bold shadow-sm">1</button>
+<button class="flex items-center justify-center size-9 rounded-lg border border-[#e7f3ea] bg-white text-[#4c9a5f] hover:bg-[#e7f3ea] hover:text-[#0d1b11] transition-colors font-medium">2</button>
+<button class="flex items-center justify-center size-9 rounded-lg border border-[#e7f3ea] bg-white text-[#4c9a5f] hover:bg-[#e7f3ea] hover:text-[#0d1b11] transition-colors font-medium">3</button>
+<span class="flex items-center justify-center size-9 text-[#4c9a5f]">...</span>
+<button class="flex items-center justify-center size-9 rounded-lg border border-[#e7f3ea] bg-white text-[#4c9a5f] hover:bg-[#e7f3ea] hover:text-[#0d1b11] transition-colors font-medium">12</button>
+<button class="flex items-center justify-center size-9 rounded-lg border border-[#e7f3ea] bg-white text-[#4c9a5f] hover:bg-[#e7f3ea] hover:text-[#0d1b11] transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- FOOTER SPACER -->
+<div class="h-20"></div>
+</div>
+</main>
+</body></html>

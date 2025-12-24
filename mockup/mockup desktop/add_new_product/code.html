@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Product - HWest Florist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00E676", 
+              "primary-hover": "#00C853",
+              "background-light": "#F7F9FC",
+              "background-dark": "#121212",
+              "surface-light": "#FFFFFF",
+              "surface-dark": "#1E1E1E",
+              "border-light": "#E5E7EB",
+              "border-dark": "#333333",
+              "text-main-light": "#111827",
+              "text-main-dark": "#F3F4F6",
+              "text-muted-light": "#6B7280",
+              "text-muted-dark": "#9CA3AF",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "0.75rem",
+              xl: "1rem"
+            },
+          },
+        },
+      };
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark transition-colors duration-200 antialiased selection:bg-primary selection:text-white">
+<div class="min-h-screen flex">
+<aside class="w-64 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark hidden lg:flex flex-col fixed h-full z-20">
+<div class="h-16 flex items-center px-6 border-b border-border-light dark:border-border-dark">
+<span class="text-xl font-bold tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_florist</span>
+                HWest Florist
+            </span>
+</div>
+<nav class="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
+<a class="flex items-center px-3 py-2.5 text-text-muted-light dark:text-text-muted-dark hover:bg-gray-50 dark:hover:bg-white/5 rounded-DEFAULT group transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px] mr-3">dashboard</span>
+<span class="font-medium text-sm">Dashboard</span>
+</a>
+<a class="flex items-center px-3 py-2.5 text-text-main-light dark:text-text-main-dark bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400 rounded-DEFAULT group transition-colors border border-green-100 dark:border-transparent" href="#">
+<span class="material-symbols-outlined text-[20px] mr-3">inventory_2</span>
+<span class="font-medium text-sm">Products</span>
+</a>
+<a class="flex items-center px-3 py-2.5 text-text-muted-light dark:text-text-muted-dark hover:bg-gray-50 dark:hover:bg-white/5 rounded-DEFAULT group transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px] mr-3">receipt_long</span>
+<span class="font-medium text-sm">Orders</span>
+</a>
+<a class="flex items-center px-3 py-2.5 text-text-muted-light dark:text-text-muted-dark hover:bg-gray-50 dark:hover:bg-white/5 rounded-DEFAULT group transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px] mr-3">local_shipping</span>
+<span class="font-medium text-sm">Delivery</span>
+</a>
+<a class="flex items-center px-3 py-2.5 text-text-muted-light dark:text-text-muted-dark hover:bg-gray-50 dark:hover:bg-white/5 rounded-DEFAULT group transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px] mr-3">settings</span>
+<span class="font-medium text-sm">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-border-light dark:border-border-dark">
+<div class="flex items-center gap-3">
+<img alt="Admin User" class="h-9 w-9 rounded-full object-cover ring-2 ring-white dark:ring-gray-700 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABy2x1FGul_py7huYVfgLbFupxpua6S4kTY32_hSkXO1Ym2vnNfeUk51EnLYCL1AReX2Ka8dTXLkZ8voJwjdWSLH1_ivYgf1CU4EpYygJNgO86JxR_PYK6IgMOHktZ7ipLObbpHl6CAXdlACIUNzKpNqNIyZTAdABiRj7W4pmioMxNsLv1zBbS0cUJgtjleojE9WRDkC5uL2-_seTF4bcVGvvGeyBPJvKDwXpKKFQupg6p0r1aofHamFISrs9aqXgl3StNqemNI9u7"/>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">Admin User</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark truncate">admin@hwest.com</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 lg:ml-64 p-6 lg:p-8 overflow-y-auto">
+<div class="max-w-6xl mx-auto mb-8">
+<nav class="flex items-center gap-2 text-text-muted-light dark:text-text-muted-dark text-sm mb-4">
+<a class="hover:text-primary transition-colors" href="#">Products</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-text-main-light dark:text-text-main-dark font-medium">Add New</span>
+</nav>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-text-main-light dark:text-text-main-dark">Add New Product</h1>
+<p class="text-text-muted-light dark:text-text-muted-dark mt-1">Create a new item in your inventory.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 border border-border-light dark:border-border-dark rounded-lg text-text-main-light dark:text-text-main-dark font-medium bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-sm shadow-sm">
+                        Discard
+                    </button>
+<button class="px-4 py-2 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg shadow-md hover:shadow-lg flex items-center transition-all text-sm transform active:scale-95">
+<span class="material-symbols-outlined text-[20px] mr-2">save</span>
+                        Publish Product
+                    </button>
+</div>
+</div>
+</div>
+<div class="max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-3 gap-8">
+<div class="xl:col-span-2 space-y-8">
+<section class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-3 mb-6">
+<span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+</span>
+<h2 class="text-lg font-semibold text-text-main-light dark:text-text-main-dark">General Information</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1.5" for="product-name">Product Name</label>
+<input class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 text-text-main-light dark:text-text-main-dark focus:ring-2 focus:ring-primary focus:border-primary placeholder-gray-400 dark:placeholder-gray-500 py-2.5 px-3 shadow-sm transition-all" id="product-name" placeholder="e.g. Spring Sunrise Bouquet" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1.5" for="category">Category</label>
+<div class="relative">
+<select class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 text-text-main-light dark:text-text-main-dark focus:ring-2 focus:ring-primary focus:border-primary py-2.5 px-3 appearance-none shadow-sm cursor-pointer" id="category">
+<option disabled="" selected="" value="">Select category</option>
+<option>Bouquets</option>
+<option>Board Flowers</option>
+<option>Standing</option>
+<option>Vase Arrangements</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-gray-400 pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1.5" for="sku">SKU</label>
+<input class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 text-text-main-light dark:text-text-main-dark focus:ring-2 focus:ring-primary focus:border-primary placeholder-gray-400 dark:placeholder-gray-500 py-2.5 px-3 shadow-sm" id="sku" placeholder="e.g. FLW-001" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1.5" for="description">Description</label>
+<div class="relative">
+<textarea class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 text-text-main-light dark:text-text-main-dark focus:ring-2 focus:ring-primary focus:border-primary placeholder-gray-400 dark:placeholder-gray-500 py-2.5 px-3 shadow-sm resize-none" id="description" placeholder="Describe the arrangement details..." rows="4"></textarea>
+<div class="absolute bottom-2 right-2 text-xs text-text-muted-light dark:text-text-muted-dark bg-white dark:bg-black/20 px-1 rounded">0/500</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center w-8 h-8 rounded-full bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
+<span class="material-symbols-outlined text-[20px]">image</span>
+</span>
+<h2 class="text-lg font-semibold text-text-main-light dark:text-text-main-dark">Product Images</h2>
+</div>
+<button class="text-sm text-primary font-medium hover:text-primary-hover hover:underline decoration-2 underline-offset-4">Download All</button>
+</div>
+<div class="space-y-6">
+<div class="w-full">
+<label class="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl cursor-pointer bg-gray-50 dark:bg-gray-800/30 hover:bg-gray-100 dark:hover:bg-gray-800/60 transition-all group relative overflow-hidden">
+<div class="absolute inset-0 pointer-events-none bg-grid-slate-100 dark:bg-grid-slate-800 [mask-image:linear-gradient(to_bottom,transparent,black)] opacity-50"></div>
+<div class="flex flex-col items-center justify-center pt-5 pb-6 relative z-10">
+<div class="bg-white dark:bg-gray-700 shadow-md rounded-full p-3 mb-3 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+</div>
+<p class="mb-1 text-sm text-text-main-light dark:text-text-main-dark font-medium">Click to upload or drag and drop</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">SVG, PNG, JPG or WEBP (Max 5MB)</p>
+</div>
+<input class="hidden" multiple="" type="file"/>
+</label>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="relative group aspect-square rounded-lg overflow-hidden border border-border-light dark:border-border-dark bg-gray-100 dark:bg-gray-800 shadow-sm">
+<img alt="Uploaded Flower 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA38VvpfvWiwoWgCn0Kz4dLAfO8QHo1Na9uA-ypVyyZ6JDzctkNoSk38xfRMZ2kVmCousSnC-IdriDLnm2GlD4Y9R1yrdhcj1xBAPUvAlheMuN9J6oI3Vpa8npcXBNkvCr2UNRwEUFiJES7qcwnouciCqJE7pWwhlbSFqZ4eMIbMuK1sKtENvmX0afqN-ZZnrAkYXz7-_QsbK0xPqtx_11KlG3Cx7iS0ZricDGQj7VIH6tagq3ZdT3y6rfDxjt-nj2Sa3KyUe_1YUSl"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 backdrop-blur-[2px]">
+<button class="bg-white text-gray-700 p-1.5 rounded-full hover:bg-red-50 hover:text-red-600 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+<button class="bg-white text-gray-700 p-1.5 rounded-full hover:bg-blue-50 hover:text-blue-600 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+<div class="absolute top-2 left-2 bg-white/90 dark:bg-black/80 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider shadow-sm text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700">Main</div>
+</div>
+<div class="relative group aspect-square rounded-lg overflow-hidden border border-border-light dark:border-border-dark bg-gray-100 dark:bg-gray-800 shadow-sm">
+<img alt="Uploaded Flower 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-82zXcze3RJEfI5m4dVnuc4BpBZNq-0sVYX6pVqrAtn-aAANPxW9fkPnHtqk0ncJmwIeXp7PbUXsxPEgm-v4NAEvXXjwoV0WHEpkD6rKZE2ShaxhpWimQB1wxRvmVelaVh4Qpot5kaILTEGKzNvnrbyX2-CIos1TmaOZ4eOzj_gDaij95bU8Fgq9vrKcs4p5jGAXvRj82RrOatN7fmuRt9RBSuahutpl5wdr9e5mM26Psx9wvZW6BRvW1iiK4PcIbD0UsTdfFbAhm"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 backdrop-blur-[2px]">
+<button class="bg-white text-gray-700 p-1.5 rounded-full hover:bg-red-50 hover:text-red-600 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<div class="relative group aspect-square rounded-lg overflow-hidden border-2 border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/30 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800/60 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-600 text-3xl">add_photo_alternate</span>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-3 mb-6">
+<span class="flex items-center justify-center w-8 h-8 rounded-full bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400">
+<span class="material-symbols-outlined text-[20px]">attach_money</span>
+</span>
+<h2 class="text-lg font-semibold text-text-main-light dark:text-text-main-dark">Pricing &amp; Inventory</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1.5" for="price">Base Price</label>
+<div class="relative rounded-lg shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="text-gray-500 sm:text-sm">$</span>
+</div>
+<input class="block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 pl-7 pr-12 focus:border-primary focus:ring-primary py-2.5 text-text-main-light dark:text-text-main-dark placeholder-gray-400 dark:placeholder-gray-500" id="price" name="price" placeholder="0.00" type="number"/>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="text-gray-500 sm:text-sm">USD</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1.5" for="discount">Discount Price</label>
+<div class="relative rounded-lg shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="text-gray-500 sm:text-sm">$</span>
+</div>
+<input class="block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 pl-7 pr-12 focus:border-primary focus:ring-primary py-2.5 text-text-main-light dark:text-text-main-dark placeholder-gray-400 dark:placeholder-gray-500" id="discount" name="discount" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1.5" for="stock">Stock Quantity</label>
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 pl-3 pr-10 focus:border-primary focus:ring-primary py-2.5 text-text-main-light dark:text-text-main-dark placeholder-gray-400 dark:placeholder-gray-500" id="stock" name="stock" placeholder="0" type="number"/>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="text-gray-500 sm:text-sm">Units</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center w-8 h-8 rounded-full bg-orange-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400">
+<span class="material-symbols-outlined text-[20px]">style</span>
+</span>
+<h2 class="text-lg font-semibold text-text-main-light dark:text-text-main-dark">Variations</h2>
+</div>
+<button class="text-sm bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 text-primary font-medium px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1">add</span> 
+                            Add Variant
+                        </button>
+</div>
+<div class="border border-border-light dark:border-border-dark rounded-lg overflow-hidden">
+<table class="min-w-full divide-y divide-border-light dark:divide-border-dark">
+<thead class="bg-gray-50 dark:bg-gray-800/50">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-semibold text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider" scope="col">Size</th>
+<th class="px-6 py-3 text-left text-xs font-semibold text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider" scope="col">Price Mod</th>
+<th class="px-6 py-3 text-left text-xs font-semibold text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider" scope="col">SKU Mod</th>
+<th class="relative px-6 py-3" scope="col">
+<span class="sr-only">Actions</span>
+</th>
+</tr>
+</thead>
+<tbody class="bg-surface-light dark:bg-surface-dark divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-text-main-light dark:text-text-main-dark">Standard</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-text-muted-light dark:text-text-muted-dark">—</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-text-muted-light dark:text-text-muted-dark">—</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-gray-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-text-main-light dark:text-text-main-dark">Deluxe</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold bg-green-50 dark:bg-green-900/20 inline-flex items-center px-2 py-0.5 rounded ml-[-0.5rem] mt-[0.5rem] md:ml-0 md:mt-0">+$15.00</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-text-muted-light dark:text-text-muted-dark">-DLX</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-gray-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<div class="xl:col-span-1 space-y-8">
+<section class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-border-light dark:border-border-dark sticky top-6">
+<h2 class="text-sm font-bold uppercase tracking-wider text-text-muted-light dark:text-text-muted-dark mb-6">
+                        Publish Settings
+                    </h2>
+<div class="space-y-6">
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="text-sm font-medium text-text-main-light dark:text-text-main-dark">Status</label>
+<span class="h-2 w-2 rounded-full bg-green-500"></span>
+</div>
+<select class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 text-text-main-light dark:text-text-main-dark focus:ring-2 focus:ring-primary focus:border-primary py-2 px-3 text-sm">
+<option>Published</option>
+<option>Draft</option>
+<option>Archived</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2">Visibility</label>
+<div class="flex items-center space-x-4">
+<div class="flex items-center">
+<input checked="" class="h-4 w-4 border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700" id="visibility-public" name="visibility" type="radio"/>
+<label class="ml-2 block text-sm text-text-main-light dark:text-text-main-dark" for="visibility-public">Public</label>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700" id="visibility-hidden" name="visibility" type="radio"/>
+<label class="ml-2 block text-sm text-text-main-light dark:text-text-main-dark" for="visibility-hidden">Hidden</label>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-border-light dark:border-border-dark">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1.5" for="tags">Tags</label>
+<input class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 text-text-main-light dark:text-text-main-dark focus:ring-2 focus:ring-primary focus:border-primary py-2 px-3 text-sm shadow-sm" id="tags" placeholder="e.g. Wedding, Summer" type="text"/>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1.5">Press Enter to add tags</p>
+</div>
+<div class="pt-4 border-t border-border-light dark:border-border-dark space-y-3">
+<div class="flex items-start">
+<div class="flex h-5 items-center">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 cursor-pointer" id="feature" type="checkbox"/>
+</div>
+<div class="ml-3 text-sm">
+<label class="font-medium text-text-main-light dark:text-text-main-dark cursor-pointer" for="feature">Featured Product</label>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Show on homepage banner</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="flex h-5 items-center">
+<input checked="" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 cursor-pointer" id="new" type="checkbox"/>
+</div>
+<div class="ml-3 text-sm">
+<label class="font-medium text-text-main-light dark:text-text-main-dark cursor-pointer" for="new">Mark as 'New'</label>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Add "New" badge for 7 days</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-blue-50 dark:bg-blue-900/10 rounded-xl p-5 border border-blue-100 dark:border-blue-900/30">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400 mt-0.5">lightbulb</span>
+<div>
+<h3 class="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-1">Selling Tip</h3>
+<p class="text-xs text-blue-700 dark:text-blue-400/80 leading-relaxed">
+                                 Add at least 3 images from different angles to increase conversion rates by up to 15%.
+                             </p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

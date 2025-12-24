@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HWest Florist Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Noto+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1c2e22",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-50 font-display transition-colors duration-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<!-- Top App Bar -->
+<div class="flex items-center px-4 pt-6 pb-2 justify-between sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-white dark:border-gray-700 shadow-sm" data-alt="Administrator profile picture showing a smiling professional" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC-ct4UuDQVUehLOYbE2iwlYPr8WIlBCHZucxYUoQFe4JyKR-cG4KnL4QpeX--ofXCECe-o841ckgSrGTAiduByUBPWlc4ja5CiS1WnRgRqhZCfJ-ouZMRKA33pGSNLOsG8sq-ST1npctMbH1mXZP7GASGYGq9JZaNRwSiY5xlFbfFeY1TOkUHyE5IbVkmW09euZTkYzbx-aBHRuNI-yDewTKCyUXQcUvHbErhEcbARp0vRAbtZ2omaDMigb03SbaHuomsNh0xZjxwc");'>
+</div>
+<div class="absolute bottom-0 right-0 size-3 bg-primary rounded-full border-2 border-white dark:border-background-dark"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 leading-none">Welcome back</span>
+<h2 class="text-slate-900 dark:text-white text-base font-bold leading-tight">HWest Admin</h2>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2">
+<button class="flex items-center justify-center size-10 rounded-full bg-white dark:bg-surface-dark shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors relative">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"></span>
+</button>
+</div>
+</div>
+<!-- Period Selector (Chips) -->
+<div class="flex gap-2 px-4 py-2 overflow-x-auto hide-scrollbar">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-slate-900 px-5 shadow-sm shadow-primary/30 transition-all">
+<p class="text-sm font-bold leading-normal">Today</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-transparent dark:border-gray-700 px-5 transition-all">
+<p class="text-gray-600 dark:text-gray-300 text-sm font-medium leading-normal">This Week</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-transparent dark:border-gray-700 px-5 transition-all">
+<p class="text-gray-600 dark:text-gray-300 text-sm font-medium leading-normal">This Month</p>
+</button>
+</div>
+<!-- Overview Title -->
+<div class="px-4 pt-4 pb-2">
+<h1 class="text-slate-900 dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Overview</h1>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-3 px-4">
+<!-- Total Revenue Card (Full Width) -->
+<div class="col-span-2 flex flex-col gap-1 rounded-xl p-5 bg-surface-light dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium">Total Revenue</p>
+<p class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight">$4,250.00</p>
+</div>
+<div class="flex items-center gap-1 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-green-700 dark:text-green-400 text-sm">trending_up</span>
+<span class="text-green-700 dark:text-green-400 text-xs font-bold">+5%</span>
+</div>
+</div>
+</div>
+<!-- Orders Card -->
+<div class="flex flex-col gap-2 rounded-xl p-4 bg-surface-light dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="size-8 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-lg">shopping_bag</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-medium">Total Orders</p>
+<div class="flex items-end gap-2">
+<p class="text-slate-900 dark:text-white text-xl font-bold">24</p>
+<p class="text-green-600 dark:text-green-400 text-xs font-medium mb-1">+12%</p>
+</div>
+</div>
+<!-- Pending Deliveries Card -->
+<div class="flex flex-col gap-2 rounded-xl p-4 bg-surface-light dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="size-8 rounded-full bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-orange-600 dark:text-orange-400 text-lg">local_shipping</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-medium">Pending</p>
+<div class="flex items-end gap-2">
+<p class="text-slate-900 dark:text-white text-xl font-bold">8</p>
+<p class="text-red-500 text-xs font-medium mb-1">-2%</p>
+</div>
+</div>
+</div>
+<!-- Production Status -->
+<div class="mt-6 px-4">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Production Status</h3>
+<button class="text-primary text-sm font-bold">View All</button>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col">
+<span class="text-2xl font-bold text-slate-900 dark:text-white">12</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Arranging</span>
+</div>
+<div class="h-8 w-[1px] bg-gray-200 dark:bg-gray-700"></div>
+<div class="flex flex-col">
+<span class="text-2xl font-bold text-slate-900 dark:text-white">3</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">On Route</span>
+</div>
+<div class="h-8 w-[1px] bg-gray-200 dark:bg-gray-700"></div>
+<div class="flex flex-col">
+<span class="text-2xl font-bold text-slate-900 dark:text-white">9</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Delivered</span>
+</div>
+</div>
+<!-- Visual Progress Bar -->
+<div class="h-3 w-full bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden flex">
+<div class="h-full bg-blue-400 w-[50%]"></div>
+<div class="h-full bg-yellow-400 w-[12%]"></div>
+<div class="h-full bg-primary w-[38%]"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-gray-400 font-medium uppercase tracking-wide">
+<span class="flex items-center gap-1"><div class="size-2 bg-blue-400 rounded-full"></div> In Shop</span>
+<span class="flex items-center gap-1"><div class="size-2 bg-yellow-400 rounded-full"></div> Moving</span>
+<span class="flex items-center gap-1"><div class="size-2 bg-primary rounded-full"></div> Done</span>
+</div>
+</div>
+</div>
+<!-- Recent Delivery Proofs (Horizontal Scroll) -->
+<div class="mt-6">
+<div class="px-4 mb-3">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Recent Proofs</h3>
+</div>
+<div class="flex gap-4 overflow-x-auto px-4 pb-4 hide-scrollbar snap-x snap-mandatory">
+<!-- Proof Item 1 -->
+<div class="snap-start relative min-w-[140px] h-[180px] rounded-xl overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" data-alt="Photo proof of a bouquet delivered on a doorstep" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBddhBaRAlZrZo7EZm4mWrlFkKuq9hK7Bx_hawNyjq5wE_a6szsiJjQ7B3MaskkszQKf5RyjIKEc8Nw9w-Si4nhdznPSQKIDdhdnH5K8ivlpCTJb4cj8mEN8HijLVw1yzgmd9XNPrV2Pc83f7qrPV3PTrgSowLbv12MUNWGweFitaHDrKl2kn7BFy2gum5pg9w4YncrJOSPQsxj27CUU_GeffU5-DMmsDFhpKpn6gNQmUVAJVkC-szVmdiuPK2QJrIS0yQXX0KTrXaS");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3">
+<p class="text-white text-xs font-bold">#ORD-2921</p>
+<p class="text-white/80 text-[10px]">10 mins ago</p>
+</div>
+<div class="absolute top-2 right-2 bg-primary text-slate-900 rounded-full p-1 shadow-md">
+<span class="material-symbols-outlined text-base block">check</span>
+</div>
+</div>
+<!-- Proof Item 2 -->
+<div class="snap-start relative min-w-[140px] h-[180px] rounded-xl overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" data-alt="Photo proof of a bouquet held by a happy recipient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCiO6imPlYClk43zEtidk62q-AA-7_UJMaQ08yL5ZhX1Y0sGRDZy063L7zJz2MQTTyQ2-eY5ZtKNqO-UZSuVmQuBxx8MifZDlckbyATJqpXhoskKK6qjAUGrW6-Mv1bHJ0e8QMf88EObulT6gYWWw1PWvL4St0e0eimSDGvflKTOvvr_SVXTQsOA4nFo-1UGFSIvPWid75takiywxfi2PfFgCp0SF8RxhdDfIrFx5vsOY5lpSe7kKkSp-NX5qdfM2Xlsgp9fPPWDV0i");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3">
+<p class="text-white text-xs font-bold">#ORD-2920</p>
+<p class="text-white/80 text-[10px]">25 mins ago</p>
+</div>
+<div class="absolute top-2 right-2 bg-primary text-slate-900 rounded-full p-1 shadow-md">
+<span class="material-symbols-outlined text-base block">check</span>
+</div>
+</div>
+<!-- Proof Item 3 -->
+<div class="snap-start relative min-w-[140px] h-[180px] rounded-xl overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" data-alt="Photo proof of flowers left at reception desk" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfjKnyEPJ4IsdWp5lngWgxLtpP4xVz9btvBCTzlAf88IKhLbW2_ZSotBX5H7bdHZvJb7waBalcC6R0sPlqjw4xEh0Yr6us50eKdh2zUWmrcw73fopRVd6ieYTA2zoaLNWUoQJRVf49Cy40T8D0e1L9ardBfaL4H1ACLBSAtg2f6X6tHBUpZV_sQLJBIECHChe1LJfHL3T6yLvmAnSg_Y1P5Pm4vEff0U4tnI2W2fSfW16wiDSQxotpdDvDVjheQEERdsYpyNHn58QK");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3">
+<p class="text-white text-xs font-bold">#ORD-2918</p>
+<p class="text-white/80 text-[10px]">42 mins ago</p>
+</div>
+<div class="absolute top-2 right-2 bg-primary text-slate-900 rounded-full p-1 shadow-md">
+<span class="material-symbols-outlined text-base block">check</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Sellers List -->
+<div class="px-4 mt-4">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-3">Top Sellers</h3>
+<div class="flex flex-col gap-3">
+<!-- Item 1 -->
+<div class="flex items-center gap-3 bg-surface-light dark:bg-surface-dark p-3 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="size-14 rounded-lg bg-gray-200 bg-cover bg-center" data-alt="Bouquet of yellow roses and sunflowers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAqUNZoHk17HymLiaimwpI6Q13S5_rNkP6XxLXy-b3nxCH4ozFvFZVpa6Y8UgDIiGHLsNvsQF5qcrxJRMWqjccICtcyKCWBp0IzG7K2Obp_2HA24xDQV537qzIGFG5nxbLmb7oPYqw49sd4XAtKDqlbMnN9QX195jOot_l1MdlBYnia1QxFJ-O9tRjMjkC2nyqKCCBrrkgtTJ7DW7lDJO0wanvQG2Z5sjGivwGUJwFRGt4gRCwMSDq2GJGDar2ZIybns7bBDN8x1TVZ");'>
+</div>
+<div class="flex-1">
+<h4 class="text-slate-900 dark:text-white font-bold text-sm">Sunshine Rose Mix</h4>
+<p class="text-gray-500 dark:text-gray-400 text-xs">$45.00 • Standard</p>
+</div>
+<div class="text-right">
+<p class="text-slate-900 dark:text-white font-bold">12</p>
+<p class="text-gray-400 text-[10px] font-medium">Sold</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-3 bg-surface-light dark:bg-surface-dark p-3 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="size-14 rounded-lg bg-gray-200 bg-cover bg-center" data-alt="Elegant white lilies bouquet" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcprm7jM6K9zA8WfUAqUulwZ4URy7p0ORhIvtkpMOirXr1ZekDVVej_aM6SCqDoo4yz0JywzM57S6LVI_FaC0H-el77xl5NqjbhqKIC6xNMJ5i2E-iEcU7Yl9mIMyasZgMjifzs6VJc3gD3pnZY7MPkwxfKm9X-SpCZNCBlpmpKCdrGTDYrM78MmPtBcfaf_qwp7aYQH7UBKIuDDJjoyfD4wG0o8ntbUL6dJRNTkdleeKgWbLZ_FDm0zar-_8fkB9-Z_w3Ikt0SQvf");'>
+</div>
+<div class="flex-1">
+<h4 class="text-slate-900 dark:text-white font-bold text-sm">Sympathy Lily</h4>
+<p class="text-gray-500 dark:text-gray-400 text-xs">$60.00 • Premium</p>
+</div>
+<div class="text-right">
+<p class="text-slate-900 dark:text-white font-bold">8</p>
+<p class="text-gray-400 text-[10px] font-medium">Sold</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center gap-3 bg-surface-light dark:bg-surface-dark p-3 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="size-14 rounded-lg bg-gray-200 bg-cover bg-center" data-alt="Red roses bouquet" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKf5BkUVfc9wgBVG0Z0f9htTuYcW0lQ7uhOKDJVypAoslb7yDCxX-hFL0rNCzhwBCvXqfp8TaUobvKiMbfVZhvuNTPUqVqU4LHGI5w9Ev3vVwBtt2jK3jfEWbf0QFBE6Yp2jqMDZORDTBWiSWoEn9mdE1QJVFi9a1QkR_ZV8pgf6Wy9Fg1RAiaIBiBucNAX8N5ExJyb8nh6LwZ0Ewn-n1ghbH-fa5PNchimjZIt_7T9OwZ16dhkd_S7nnyD9Sz6VAIGj5F2tLkXTNA");'>
+</div>
+<div class="flex-1">
+<h4 class="text-slate-900 dark:text-white font-bold text-sm">Romantic Red</h4>
+<p class="text-gray-500 dark:text-gray-400 text-xs">$55.00 • Deluxe</p>
+</div>
+<div class="text-right">
+<p class="text-slate-900 dark:text-white font-bold">5</p>
+<p class="text-gray-400 text-[10px] font-medium">Sold</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-4 z-30 size-14 bg-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center transition-transform hover:scale-105 active:scale-95 text-slate-900">
+<span class="material-symbols-outlined" style="font-size: 28px;">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 w-full bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 pb-safe pt-2 z-40">
+<div class="flex justify-around items-end h-16 pb-4">
+<button class="flex flex-col items-center gap-1 w-16 group">
+<span class="material-symbols-outlined text-primary font-bold group-hover:scale-110 transition-transform">dashboard</span>
+<span class="text-[10px] font-bold text-slate-900 dark:text-white">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 w-16 group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">local_florist</span>
+<span class="text-[10px] font-medium text-gray-500 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white">Orders</span>
+</button>
+<button class="flex flex-col items-center gap-1 w-16 group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">inventory_2</span>
+<span class="text-[10px] font-medium text-gray-500 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white">Catalog</span>
+</button>
+<button class="flex flex-col items-center gap-1 w-16 group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">local_shipping</span>
+<span class="text-[10px] font-medium text-gray-500 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-white">Drivers</span>
+</button>
+</div>
+</div>
+</body></html>

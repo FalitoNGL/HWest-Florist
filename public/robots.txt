@@ -1,0 +1,19 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api
+Disallow: /api/*
+
+# Allow search engines to access static assets
+Allow: /_next/static/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://hwestflorist.shop/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1

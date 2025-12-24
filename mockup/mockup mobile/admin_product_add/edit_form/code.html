@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Product Add/Edit Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2c20",
+                        "text-light": "#0d1b12",
+                        "text-dark": "#e0ece4",
+                        "border-light": "#cfe7d7",
+                        "border-dark": "#2a4030",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for horizontal scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col antialiased transition-colors duration-200">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-border-light dark:border-border-dark">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-light dark:text-text-dark transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h1 class="text-lg font-bold text-text-light dark:text-text-dark">Add Product</h1>
+<button class="px-4 py-1.5 rounded-full bg-primary text-background-dark font-bold text-sm hover:opacity-90 transition-opacity">
+            Save
+        </button>
+</header>
+<main class="flex-1 w-full max-w-md mx-auto pb-24">
+<!-- Images Section -->
+<section class="mt-6">
+<div class="px-4 flex items-center justify-between mb-3">
+<h3 class="text-text-light dark:text-text-dark text-lg font-bold">Product Images</h3>
+<span class="text-sm text-gray-500 dark:text-gray-400">0/5</span>
+</div>
+<div class="overflow-x-auto px-4 hide-scrollbar">
+<div class="flex gap-3 min-w-max">
+<!-- Upload Placeholder -->
+<button class="flex flex-col items-center justify-center w-28 h-28 rounded-xl border-2 border-dashed border-primary/50 bg-primary/5 dark:bg-primary/10 text-primary hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors shrink-0">
+<span class="material-symbols-outlined text-3xl mb-1">add_a_photo</span>
+<span class="text-xs font-semibold">Add Photo</span>
+</button>
+<!-- Image Thumbnails -->
+<div class="relative w-28 h-28 shrink-0 group">
+<div class="w-full h-full rounded-xl bg-gray-200 dark:bg-gray-800 bg-cover bg-center" data-alt="Flower bouquet arrangement side view" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpQUVeNqudo-lDcTF_EX8rMX4fsKY4qwwAn1ynjHsse-cbO-dK9VyYhGYmPMH-N_qOQ6QxcppaOqDLvRQOqjzJvfJ3VQRfaDKmlGenzc8apz3b4GIHS6WiMlKq8ZjFEYTKtuwIp33WQE4HO5wqaEafXgig70qbLfatiLgYU5FlaHNnCnVnkNmFg4J-383gi0L9FmfjVNm-ICxHE4AM3jpEaYmacU6vbJZVylNd0L-t1xtb9PPfzJg0uNkdCzoZrCPAs3CdrjyjIlpW');"></div>
+<button class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white shadow-sm hover:bg-red-600 transition-colors">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+<div class="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-sm rounded-b-xl py-1 px-2">
+<p class="text-[10px] font-bold text-white text-center uppercase tracking-wider">Main</p>
+</div>
+</div>
+<div class="relative w-28 h-28 shrink-0 group">
+<div class="w-full h-full rounded-xl bg-gray-200 dark:bg-gray-800 bg-cover bg-center" data-alt="Close up of red rose petals" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcMLfGhXe4dG5rgi0G9X2jerNIY496Kx9yhaqZn1DUDTdGQiqC3XebleQNwo4Xtu4BVQZKZzg0SRuD_zOH7F1ktjCzerA2sfIYRNfUBNPfStOCTj0OtUgrGYnuTOnXzgRsc283Zx-4GYu0PBtZxQeyGYlgwoGI3Xl_hmvS1Fx-c-6yPRC7zpG67EXVxgONwZEuKXIRceqAedbnz4yNxLu54S0WOXvbxoJrsKgI6YF7irVRpjnlg4jNeVTXPzzd1LcWGrPWloDHXmJ7');"></div>
+<button class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white shadow-sm hover:bg-red-600 transition-colors">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<p class="px-4 mt-2 text-xs text-gray-500 dark:text-gray-400">First image will be the cover photo.</p>
+</section>
+<!-- Product Details Form -->
+<section class="mt-8 px-4 space-y-6">
+<h3 class="text-text-light dark:text-text-dark text-lg font-bold border-b border-border-light dark:border-border-dark pb-2">Details</h3>
+<!-- Product Name -->
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-text-light dark:text-text-dark" for="product-name">Product Name</label>
+<input class="w-full px-4 py-3 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" id="product-name" placeholder="e.g. Luxury Rose Bouquet" type="text"/>
+</div>
+<!-- Category Selector -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-text-light dark:text-text-dark">Category</label>
+<div class="flex flex-wrap gap-2">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="category" type="radio"/>
+<span class="inline-block px-4 py-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark text-sm font-medium peer-checked:bg-primary peer-checked:text-background-dark peer-checked:border-primary transition-all">
+                            Papan
+                        </span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="category" type="radio"/>
+<span class="inline-block px-4 py-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark text-sm font-medium peer-checked:bg-primary peer-checked:text-background-dark peer-checked:border-primary transition-all">
+                            Buket
+                        </span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="category" type="radio"/>
+<span class="inline-block px-4 py-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark text-sm font-medium peer-checked:bg-primary peer-checked:text-background-dark peer-checked:border-primary transition-all">
+                            Standing
+                        </span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="category" type="radio"/>
+<span class="inline-block px-4 py-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark text-sm font-medium peer-checked:bg-primary peer-checked:text-background-dark peer-checked:border-primary transition-all">
+                            Gift Box
+                        </span>
+</label>
+</div>
+</div>
+<!-- Price & Stock Row -->
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-text-light dark:text-text-dark" for="price">Price (IDR)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium text-sm">Rp</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" id="price" inputmode="numeric" placeholder="0" type="number"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-text-light dark:text-text-dark" for="stock">Stock</label>
+<div class="flex items-center rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark overflow-hidden h-[46px]">
+<button class="w-10 h-full flex items-center justify-center bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300 transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<input class="flex-1 w-full h-full text-center bg-transparent border-none text-text-light dark:text-text-dark font-medium focus:ring-0 p-0" id="stock" inputmode="numeric" type="number" value="1"/>
+<button class="w-10 h-full flex items-center justify-center bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300 transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-text-light dark:text-text-dark" for="description">Description</label>
+<textarea class="w-full px-4 py-3 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none" id="description" placeholder="Describe the flower arrangement, materials used, and care instructions..." rows="4"></textarea>
+</div>
+<!-- Status Toggle -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-text-light dark:text-text-dark">Active Product</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Visible to customers in catalog</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/20 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</section>
+<!-- Sticky Bottom Action (Optional alternative to Top Bar Save) -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-border-light dark:border-border-dark md:hidden">
+<button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check</span>
+                Save Product
+            </button>
+</div>
+</main>
+<script>
+        // Simple logic to toggle stepper buttons visually
+        // No real logic requested, but makes the component feel complete
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('ring-2', 'ring-primary', 'border-transparent');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('ring-2', 'ring-primary', 'border-transparent');
+            });
+        });
+    </script>
+</body></html>

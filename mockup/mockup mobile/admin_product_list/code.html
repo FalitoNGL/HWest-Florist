@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HWest Florist Admin - Product List</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities for Hide Scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-x-hidden">
+<div class="relative flex flex-col min-h-screen max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden border-x border-slate-200 dark:border-slate-800">
+<!-- Header -->
+<header class="sticky top-0 z-20 flex items-center justify-between px-4 py-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-800 dark:text-white">menu</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Product Catalog</h1>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full bg-primary text-black shadow-lg hover:shadow-primary/50 transition-all hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">add</span>
+</button>
+</header>
+<!-- Search & Filter Section -->
+<div class="flex flex-col gap-4 px-4 py-4 pb-2 bg-background-light dark:bg-background-dark z-10">
+<!-- Search Bar -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full p-3 pl-10 text-sm font-medium text-slate-900 dark:text-white bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 focus:ring-2 focus:ring-primary focus:border-primary dark:focus:border-primary placeholder-slate-400 dark:placeholder-slate-500 shadow-sm transition-all" placeholder="Search by flower name or SKU..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+<!-- Active Chip -->
+<button class="flex shrink-0 h-9 items-center justify-center px-5 rounded-full bg-primary text-black font-semibold text-sm shadow-md shadow-primary/20 transition-transform active:scale-95">
+                    All
+                </button>
+<!-- Inactive Chips -->
+<button class="flex shrink-0 h-9 items-center justify-center px-5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95">
+                    Bouquets
+                </button>
+<button class="flex shrink-0 h-9 items-center justify-center px-5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95">
+                    Board Flowers
+                </button>
+<button class="flex shrink-0 h-9 items-center justify-center px-5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95">
+                    Low Stock
+                    <span class="ml-2 flex h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+<button class="flex shrink-0 h-9 items-center justify-center px-5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95">
+                    Archived
+                </button>
+</div>
+</div>
+<!-- Product List -->
+<div class="flex flex-col gap-3 px-4 pb-24">
+<!-- List Header - Item Count -->
+<div class="flex items-center justify-between py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+<span>142 Products</span>
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span>Sort by: Newest</span>
+<span class="material-symbols-outlined text-[16px]">sort</span>
+</button>
+</div>
+<!-- Product Card 1: Normal -->
+<div class="group relative flex items-center p-3 gap-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-primary/30 dark:hover:border-primary/30 transition-all">
+<div class="relative shrink-0">
+<div class="h-16 w-16 rounded-xl bg-slate-200 dark:bg-slate-800 bg-cover bg-center" data-alt="Vibrant spring flower bouquet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBE8zR9k-E2ACKjV3BVsPMSJOIzqBHXZK8nfkIkTmTuAEfQVDfG17E5GO12OR2dWlcikRzbsr162aIaIbSayqauv4egYU00RDbn-Hrd6Ie9YFXl3mF5WldASra24N-AW7z2To-yRnJR7f2MidrWQKtAZAx0hF-sSnwsJSHSLNTfY4PdeyrTs2YyPWHBP9eqxFJhDkuDBqk2t1yr3KGdEkvtRX_ycXnt9ldOg7ZRpFEBst1v4NLBeWBCGzt27b4WGTz5rcCzxumv0e8Q');"></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Spring Sunrise Bouquet</h3>
+<span class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">$45.00</span>
+<span class="text-xs text-slate-300 dark:text-slate-600">•</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-green-100 dark:bg-green-900/30">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-xs font-medium text-green-700 dark:text-green-400">12 in stock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 2: Low Stock -->
+<div class="group relative flex items-center p-3 gap-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-primary/30 dark:hover:border-primary/30 transition-all">
+<div class="relative shrink-0">
+<div class="h-16 w-16 rounded-xl bg-slate-200 dark:bg-slate-800 bg-cover bg-center" data-alt="Elegant table centerpiece arrangement" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLRFN1OKzYMiUrnHtEsdu7_8zaA7DbfeTIkVgCNxWQ21lJEYWdtqqZU89gDwAnKhlqedEhtm0tMKF2N5QxK3LkSd3Ku4Gn0JwlD-sJUBqg4Jp5mxpqtHNVg2LJ_kqeLgZU6hWp-sKooqy3IeMjjuHcRf_po8dEQQvOldRixH359ROz1HyqZZdVqTvUhZb5Y07V_tADzkL39qA47Hgb5byRCpFdb0jLGwz51JC4hhAI28Q93og9NApQt6eyeDD7tJPdUxjvz5pU3Vss');"></div>
+<!-- Low stock overlay indicator on image -->
+<div class="absolute -top-1.5 -right-1.5 flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white dark:border-slate-900"></span>
+</div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Board Meeting Centerpiece</h3>
+<span class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">$85.00</span>
+<span class="text-xs text-slate-300 dark:text-slate-600">•</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-red-100 dark:bg-red-900/30">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+<span class="text-xs font-bold text-red-700 dark:text-red-400">2 left</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 3: Normal -->
+<div class="group relative flex items-center p-3 gap-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-primary/30 dark:hover:border-primary/30 transition-all">
+<div class="relative shrink-0">
+<div class="h-16 w-16 rounded-xl bg-slate-200 dark:bg-slate-800 bg-cover bg-center" data-alt="Dozen red roses bouquet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtZ3ZK6BNQr-5AwBj5Zv43cY8YB26f7RjSKdtnhW5GbHP4tWIml2IbA9s272TJ8b-GYpsefX7Iby8PyKTT-kkOywEZ28FHc-_dK7FBdk4rr0EDrYQE439bwHt1mHyLoXGCJIIv6Aa25VdeUjwZfU0rPvM9taNws121ApQoh2dFYC0x7VgrAkagz5GMSWpNh_EnC4uFmzFN3d99vj68JT4h2IDhchqC4LgHDPG1J98g89GNswGnBz1cRAeYhyv0KMI4RfJm9xncgLgI');"></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Premium Roses (Doz)</h3>
+<span class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">$60.00</span>
+<span class="text-xs text-slate-300 dark:text-slate-600">•</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-green-100 dark:bg-green-900/30">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-xs font-medium text-green-700 dark:text-green-400">50 in stock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 4: Out of Stock -->
+<div class="group relative flex items-center p-3 gap-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm opacity-80 hover:opacity-100 transition-all">
+<div class="relative shrink-0">
+<div class="h-16 w-16 rounded-xl bg-slate-200 dark:bg-slate-800 bg-cover bg-center grayscale" data-alt="White lily glass vase" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0-wIM35kMm-jo3Z0F1WFLHmoSnaDje1PAsaggeVg2klDFS5z4Tm_PkjOp7PZeJRlKgdNaBaWaceYVB6CK0xBG2FXU1xRd6vtCUcxM4UR-q0ejc1yjwfNa9L5Ju_EuLo9i6jDapTRaRRfVZz7PE4atfaT7LVhdwZW7hLB-m20S8kTh_g6DJyFciL5Rh2wvOShMvrUBicwZEHDx6CuCJU14Fjb4qSsiO2PK8SpIncmMNnV9bSa2oR7l0yRCo3kDcgslrulIn3JB2abH');"></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-500 dark:text-slate-400 truncate pr-2">White Lily Vase</h3>
+<span class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-semibold text-slate-500 dark:text-slate-500">$35.00</span>
+<span class="text-xs text-slate-300 dark:text-slate-600">•</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Out of stock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 5: Normal -->
+<div class="group relative flex items-center p-3 gap-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-primary/30 dark:hover:border-primary/30 transition-all">
+<div class="relative shrink-0">
+<div class="h-16 w-16 rounded-xl bg-slate-200 dark:bg-slate-800 bg-cover bg-center" data-alt="Pink tulips in a bundle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_Z4hFciXeS3xPxjYs6VMe58WRGqHS8YiFvg02pmTDeSCehcTAsNo0Pixzl0gQyD_mhskB4WJwirnTUaEq5yRMLyLwXOMWfPJhHrp4M3Wmx_B3b4zBMFyeWuaI7nzsqEgHDIAQDEUtH8IvbxLDWuHHHPOWaQbwtDQ5YSDnF1Z-F_JBzbAG3fy-a_zo1uhOeYB69EkTo_-CrdWLIgkEYZ3XCR4vt34SBFk75zLdCs86ivEEk_mRdP1w_C4xZocIfBDUlCInKUTpBz_v');"></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Dutch Tulip Bundle</h3>
+<span class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">$22.00</span>
+<span class="text-xs text-slate-300 dark:text-slate-600">•</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-green-100 dark:bg-green-900/30">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-xs font-medium text-green-700 dark:text-green-400">140 in stock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 6: New Arrival -->
+<div class="group relative flex items-center p-3 gap-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-primary/30 dark:hover:border-primary/30 transition-all">
+<div class="relative shrink-0">
+<div class="h-16 w-16 rounded-xl bg-slate-200 dark:bg-slate-800 bg-cover bg-center" data-alt="Wildflower mix arrangement" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCroLVd8t5NX25qmULaIpOjSxH-5gdyxi0O2HkpraWzXB50XeY2ZkV_tP-xZ6-5TrED6o2REINvewntrEmZM88gMVd8LCMtWBvCu-Hy9c0R1q2Hu8OyxCdLYl06YfVRm73z6I7oSU7vJrKvmOL_2EN2lUdvwc5pwCLdCf3MzJ5hpBka_-cY6zQu6DVk56tXO_M72KQ0sBf6alBt_GAyDZawV2KT0f37Yom3djd5AgBZY1DJzk6U90n5PglveD6jHL8XaKJN2uAKtlH');"></div>
+<div class="absolute -top-2 -left-2 bg-blue-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow-sm">
+                        NEW
+                    </div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Wildflower Mix</h3>
+<span class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">$55.00</span>
+<span class="text-xs text-slate-300 dark:text-slate-600">•</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-green-100 dark:bg-green-900/30">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-xs font-medium text-green-700 dark:text-green-400">8 in stock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button (Optional secondary add) - commented out as header button is preferred but keeping markup for future -->
+<!-- 
+        <button class="fixed bottom-6 right-6 size-14 bg-primary text-black rounded-full shadow-xl shadow-primary/40 flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-30">
+            <span class="material-symbols-outlined text-3xl">add</span>
+        </button> 
+        -->
+<!-- Bottom Navigation (Context) -->
+<nav class="fixed bottom-0 w-full max-w-md bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex justify-around items-center py-3 z-30">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined filled" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="text-[10px] font-bold">Catalog</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-[10px] font-medium">Orders</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</nav>
+</div>
+</body></html>

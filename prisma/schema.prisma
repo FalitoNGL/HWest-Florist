@@ -1,0 +1,132 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// --- ENUMS ---
+enum Role {
+  CUSTOMER
+  ADMIN
+  DRIVER
+  PRODUCTION
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  PAID
+  DESIGN_DRAFT      // Production creates styrofoam sketch
+  WAITING_APPROVAL  // Sent to customer for typo check
+  IN_PRODUCTION     // Assembly process
+  READY_TO_SHIP     // Finished
+  ON_DELIVERY       // Driver picked up
+  COMPLETED         // Arrived + Photo Proof uploaded
+  CANCELLED
+}
+
+enum ProductType {
+  BOARD_FLOWER     // Papan Bunga (Requires Header, TargetName, Sender)
+  BOUQUET          // Hand Bouquet (Requires CardMessage)
+  STANDING_FLOWER
+  RENTAL_ITEM
+}
+
+// --- MODELS ---
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(CUSTOMER)
+  orders    Order[]
+  deliveries Delivery[] // For Driver role
+  createdAt DateTime @default(now())
+}
+
+model Product {
+  id          String      @id @default(uuid())
+  name        String
+  description String?
+  price       Decimal     @db.Decimal(10, 2)
+  image       String?
+  type        ProductType 
+  isAvailable Boolean     @default(true)
+  stock       Int         @default(0)
+  orderItems  OrderItem[]
+  createdAt   DateTime    @default(now())
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  userId          String?     // Nullable for guest checkout logic
+  user            User?       @relation(fields: [userId], references: [id])
+  
+  totalAmount     Decimal     @db.Decimal(10, 2)
+  status          OrderStatus @default(PENDING_PAYMENT)
+  
+  // Delivery Info
+  recipientName   String
+  recipientPhone  String
+  deliveryAddress String
+  deliveryTime    DateTime    // Critical for flower delivery
+  
+  // Design Approval (Specific for Boards)
+  designDraftUrl  String?     
+  
+  items           OrderItem[]
+  delivery        Delivery?
+  
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id           String   @id @default(uuid())
+  orderId      String
+  order        Order    @relation(fields: [orderId], references: [id])
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id])
+  quantity     Int
+  price        Decimal  
+
+  // --- CUSTOM FLORIST FIELDS ---
+  // These fields are dynamic based on ProductType
+  greetingType String? // e.g. "Happy Wedding", "Deepest Sympathy"
+  targetName   String? // e.g. "Budi & Siti" (The main text on the board)
+  senderName   String? // e.g. "From: Big Family"
+  cardMessage  String? // For Bouquets
+  notes        String? // e.g. "No yellow flowers"
+}
+
+model Delivery {
+  id            String    @id @default(uuid())
+  orderId       String    @unique
+  order         Order     @relation(fields: [orderId], references: [id])
+  driverId      String?
+  driver        User?     @relation(fields: [driverId], references: [id])
+  
+  pickupTime    DateTime?
+  arrivedTime   DateTime?
+  
+  // Proof of Delivery (Mandatory)
+  proofPhotoUrl String?   
+  receiverName  String?   
+
+  createdAt     DateTime  @default(now())
+}
+
+model StoreConfig {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}

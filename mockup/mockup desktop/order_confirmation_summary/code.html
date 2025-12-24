@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Florist Enterprise Portal - Order Confirmation</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec49", // Vibrant Green
+                        "primary-dark": "#0ea332", 
+                        "background-light": "#f6f8f6", // Very light minty/grey
+                        "background-dark": "#102215", // Deep forest green/black
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2e20",
+                        "text-main-light": "#0d1b11",
+                        "text-main-dark": "#f0fdf4",
+                        "text-muted-light": "#4c9a5f",
+                        "text-muted-dark": "#86efac",
+                        "border-light": "#e7f3ea",
+                        "border-dark": "#2f4b35",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-flex;
+            vertical-align: middle;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark transition-colors duration-300 overflow-hidden h-screen flex font-display">
+<!-- Sidebar -->
+<aside class="w-64 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark flex-shrink-0 flex flex-col h-full z-20 hidden lg:flex transition-colors duration-300">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 shadow-sm" data-alt="Abstract floral logo in green gradient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB87nMb0rhDa2flDRSptAiBbN__XQcQjAlMTqZZEvEILH8wt7d2JtcOp5u5yimMeWTCMp_HgIGGmXsnD7PMCRzJ2c3IWrkgf9jBXwcneAfByszD1ynqhotVY6pKhnuGSTLUleuA98bzkr4x0NfK4-MohBo_e1i5p8shjHeyTv68yc6Y0qr_COkhjQgHsuMCMN2v8RTKJAgGnADiOyqntqTSM6VYCVXGC8LmfbbH0aYhE2Akl_DZaza6TJutrnfYSXGDp9fwpRT1vRbB");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-main-light dark:text-text-main-dark text-base font-bold leading-tight">Florist Enterprise</h1>
+<p class="text-text-muted-light dark:text-text-muted-dark text-xs font-medium">Admin Portal</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted-light dark:text-text-muted-dark hover:bg-border-light dark:hover:bg-border-dark transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">grid_view</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:text-primary font-bold transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="text-sm">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted-light dark:text-text-muted-dark hover:bg-border-light dark:hover:bg-border-dark transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">local_florist</span>
+<span class="text-sm font-medium">Products</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted-light dark:text-text-muted-dark hover:bg-border-light dark:hover:bg-border-dark transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">local_shipping</span>
+<span class="text-sm font-medium">Deliveries</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted-light dark:text-text-muted-dark hover:bg-border-light dark:hover:bg-border-dark transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">group</span>
+<span class="text-sm font-medium">Customers</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-border-light dark:border-border-dark">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-full bg-cover bg-center ring-2 ring-primary/20" data-alt="Portrait of admin user" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5TXKyFm4e2gSswcgyL_LRjUjMUKZRPmFiHZKJziJPQ3a00IadimWktH5ao6RZQhtHA3bAF9FPKmjo2n9QLU6wb5yDPHt3WviP9m7bNPLV0YygxNFD8IxLpuOitdsXqK3zoGaEiXRJN5n6kiZ0hnNBHWuBy689dPBP5ndUNUqOSBxVYHqx-4Zk3acQonZhmzCI-ey7QQBNmIza2YEJ_EkflbfFf_-2Vo5q1N23K7x9_C9NLY6ZV5lL9GfMoPYFGOiyziOKVMl3HUQ0");'></div>
+<div class="flex flex-col">
+<p class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Jane Doe</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Store Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Navigation -->
+<header class="h-16 flex items-center justify-between px-6 bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark shrink-0 transition-colors duration-300">
+<div class="flex items-center gap-4 lg:hidden">
+<button class="text-text-main-light dark:text-text-main-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="text-lg font-bold">Florist Enterprise</h2>
+</div>
+<!-- Desktop Breadcrumb / Title placeholder -->
+<div class="hidden lg:flex items-center text-sm font-medium text-text-muted-light dark:text-text-muted-dark">
+<span>Orders</span>
+<span class="material-symbols-outlined text-base mx-2">chevron_right</span>
+<span class="text-text-main-light dark:text-text-main-dark font-bold">#ORD-2023-849</span>
+</div>
+<div class="flex items-center gap-4 ml-auto">
+<div class="hidden sm:flex relative items-center">
+<span class="material-symbols-outlined absolute left-3 text-text-muted-light dark:text-text-muted-dark text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-background-light dark:bg-background-dark border-none rounded-lg text-sm focus:ring-1 focus:ring-primary w-64 text-text-main-light dark:text-text-main-dark placeholder:text-text-muted-light dark:placeholder:text-text-muted-dark transition-colors" placeholder="Search orders..." type="text"/>
+</div>
+<button class="size-10 flex items-center justify-center rounded-lg hover:bg-border-light dark:hover:bg-border-dark transition-colors relative">
+<span class="material-symbols-outlined text-text-main-light dark:text-text-main-dark">notifications</span>
+<span class="absolute top-2.5 right-2.5 size-2 bg-red-500 rounded-full border border-surface-light dark:border-surface-dark"></span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg hover:bg-border-light dark:hover:bg-border-dark transition-colors">
+<span class="material-symbols-outlined text-text-main-light dark:text-text-main-dark">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Scrollable Area -->
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-4 lg:p-8 scrollbar-hide">
+<div class="max-w-7xl mx-auto flex flex-col gap-6">
+<!-- Page Heading & Actions -->
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<h1 class="text-3xl lg:text-4xl font-black tracking-tight text-text-main-light dark:text-text-main-dark">Order #ORD-2023-849</h1>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-primary/20 text-green-800 dark:text-green-200 border border-primary/20">
+<span class="size-1.5 rounded-full bg-primary mr-2 animate-pulse"></span>
+                                Confirmed
+                            </span>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">Placed on Oct 24, 2023 • 10:30 AM via Web Store</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-gray-50 dark:hover:bg-opacity-80 transition-colors shadow-sm text-sm font-bold text-text-main-light dark:text-text-main-dark">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                            Print Invoice
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-gray-50 dark:hover:bg-opacity-80 transition-colors shadow-sm text-sm font-bold text-text-main-light dark:text-text-main-dark">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                            Edit Order
+                        </button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-dark transition-colors shadow-sm shadow-primary/30 text-sm font-bold text-black">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+                            Track Delivery
+                        </button>
+</div>
+</div>
+<!-- Success Banner -->
+<div class="w-full bg-primary/10 border border-primary/20 rounded-xl p-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-green-700 dark:text-primary">check_circle</span>
+<p class="text-sm font-medium text-green-900 dark:text-green-100">
+                        Order successfully placed! A confirmation email has been sent to <span class="font-bold underline decoration-primary decoration-2 underline-offset-2">customer@example.com</span>.
+                    </p>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- LEFT COLUMN (Main Info) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Timeline Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6">
+<h3 class="text-lg font-bold text-text-main-light dark:text-text-main-dark mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">timeline</span> Order Status
+                            </h3>
+<!-- Timeline Component Reuse & Modification -->
+<div class="grid grid-cols-[40px_1fr] gap-x-2">
+<!-- Step 1: Completed -->
+<div class="flex flex-col items-center gap-1 pt-1">
+<div class="size-6 rounded-full bg-primary text-black flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div class="w-[2px] bg-primary h-full min-h-[40px]"></div>
+</div>
+<div class="flex flex-col pb-6 pt-0.5">
+<p class="text-text-main-light dark:text-text-main-dark text-sm font-bold leading-none">Order Placed</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">Oct 24, 10:30 AM</p>
+</div>
+<!-- Step 2: Completed -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-[2px] bg-primary h-2"></div>
+<div class="size-6 rounded-full bg-primary text-black flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div class="w-[2px] bg-primary h-full min-h-[40px]"></div>
+</div>
+<div class="flex flex-col pb-6">
+<p class="text-text-main-light dark:text-text-main-dark text-sm font-bold leading-none">Payment Confirmed</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">Oct 24, 10:32 AM</p>
+</div>
+<!-- Step 3: Active/Current -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-[2px] bg-primary h-2"></div>
+<div class="size-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-primary text-primary flex items-center justify-center animate-pulse">
+<span class="material-symbols-outlined text-[16px]">local_florist</span>
+</div>
+<div class="w-[2px] bg-border-light dark:border-border-dark border-l-2 border-dashed border-gray-300 dark:border-gray-600 h-full min-h-[40px]"></div>
+</div>
+<div class="flex flex-col pb-6">
+<p class="text-text-main-light dark:text-text-main-dark text-sm font-bold leading-none">In Preparation</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">Estimated completion: 2:00 PM</p>
+</div>
+<!-- Step 4: Pending -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-[2px] border-l-2 border-dashed border-gray-300 dark:border-gray-600 h-2"></div>
+<div class="size-6 rounded-full bg-border-light dark:bg-border-dark text-text-muted-light dark:text-text-muted-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-medium leading-none">Out for Delivery</p>
+</div>
+</div>
+</div>
+<!-- Product List -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark flex justify-between items-center">
+<h3 class="text-lg font-bold text-text-main-light dark:text-text-main-dark">Items Ordered (3)</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-background-light dark:bg-background-dark text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-semibold">
+<tr>
+<th class="px-6 py-4">Product Details</th>
+<th class="px-6 py-4 text-center">Qty</th>
+<th class="px-6 py-4 text-right">Unit Price</th>
+<th class="px-6 py-4 text-right">Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark text-sm">
+<!-- Item 1 -->
+<tr class="group hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="size-16 rounded-lg bg-cover bg-center shrink-0 border border-border-light dark:border-border-dark" data-alt="Spring Sunrise Bouquet with yellow tulips and white daisies" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArrs3y2OSyv7yfyeQamkGYQIVFf4YDixfiputq_4MMpQQzVHw6TBPkVfFMujR8YHge8e5qeMtOeiP9iONdDm9DX1tufTSvxmykPdVuYWDqPVRnQbhn6QYOSnVOtKUCcisVYkg9lcZfbo7miUwgMuA0MrfdLPCW6yLR4CD3rRNEUfSfZK3LVNd03jkgrOfYdm4lVFRc5X9r2UHeCRQP8n5q8FOksGE7O38ryr-V3NbKb-kY-Pio_htNypc38rJcQMMqWm-2y7sECzDV");'></div>
+<div>
+<p class="font-bold text-text-main-light dark:text-text-main-dark text-base">Spring Sunrise Bouquet</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-xs mt-1">SKU: FL-001 • Size: Large</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center text-text-main-light dark:text-text-main-dark font-medium">1</td>
+<td class="px-6 py-4 text-right text-text-muted-light dark:text-text-muted-dark">$45.00</td>
+<td class="px-6 py-4 text-right font-bold text-text-main-light dark:text-text-main-dark">$45.00</td>
+</tr>
+<!-- Item 2 -->
+<tr class="group hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="size-16 rounded-lg bg-cover bg-center shrink-0 border border-border-light dark:border-border-dark" data-alt="Clear medium glass vase" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBzjnTYqQp6iJTkg-DBMlkftWtqPdrHHQv1C-TxDEsRkyRUWQmeiJTZx_dbhHNk_L330HQz2-cg3S7xPkl_EkyjQto8ZjpbDmsOxdPRpaJPVQRzA8rxOeUWNQeHHPRT1ZLdCYmbyzvVe9pRkkhG0IHCKAJjuwSsDbsTB16GhXJCCULa2srOx0lR__ZRb90Lq6Kp81jIjfIW8YQOb2l9jHhiYxsgOj2-BWjdSLSoZaAedvlfa29KOd1Qq800szrOkL3Phj7boPznBfEJ");'></div>
+<div>
+<p class="font-bold text-text-main-light dark:text-text-main-dark text-base">Glass Vase - Classic</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-xs mt-1">SKU: ACC-022 • Size: Medium</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center text-text-main-light dark:text-text-main-dark font-medium">1</td>
+<td class="px-6 py-4 text-right text-text-muted-light dark:text-text-muted-dark">$12.00</td>
+<td class="px-6 py-4 text-right font-bold text-text-main-light dark:text-text-main-dark">$12.00</td>
+</tr>
+<!-- Item 3 -->
+<tr class="group hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="size-16 rounded-lg bg-cover bg-center shrink-0 border border-border-light dark:border-border-dark" data-alt="Small box of chocolates" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7yEdLZjjohndg0E1F7PKUoSyEfKI1TZgPrAKtwZKOhAib5-syAv9qcxyICOxJhT2cZkAqfvY9tTrI5ph3TAOe_PPbTIhpByonwK6Uv1ehzsCMqvJ4aTv9c1iNSbDHxG0ILiqgJDf8gnjNz_acJXmgLCnD3cC1kjHzG549gyL8qaghm6WJkIBeLwpQJnyyYaAlLHLJJqkEUMZgKG3OcnPYV-QHvJX7frhTVCpoRdfmm86C5iSBS6RtO1w29eqjSVCWZ0WD9pNe9jpE");'></div>
+<div>
+<p class="font-bold text-text-main-light dark:text-text-main-dark text-base">Artisan Truffles (6pc)</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-xs mt-1">SKU: GFT-009</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center text-text-main-light dark:text-text-main-dark font-medium">1</td>
+<td class="px-6 py-4 text-right text-text-muted-light dark:text-text-muted-dark">$18.50</td>
+<td class="px-6 py-4 text-right font-bold text-text-main-light dark:text-text-main-dark">$18.50</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Delivery Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6">
+<h3 class="text-lg font-bold text-text-main-light dark:text-text-main-dark mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span> Delivery Details
+                            </h3>
+<div class="grid md:grid-cols-2 gap-6">
+<div>
+<p class="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-bold mb-2">Recipient</p>
+<p class="text-base font-bold text-text-main-light dark:text-text-main-dark">Sarah Jenkins</p>
+<p class="text-sm text-text-main-light dark:text-text-main-dark mt-1">123 Blossom Lane, Suite 400</p>
+<p class="text-sm text-text-main-light dark:text-text-main-dark">San Francisco, CA 94107</p>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-2">+1 (555) 123-4567</p>
+</div>
+<div class="bg-background-light dark:bg-background-dark rounded-lg p-4 h-full">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">info</span>
+<div>
+<p class="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-bold mb-1">Delivery Instructions</p>
+<p class="text-sm text-text-main-light dark:text-text-main-dark font-medium">Please leave at the front desk with reception. Do not ring the doorbell during office hours.</p>
+<div class="mt-3 flex items-center gap-2 text-xs font-bold text-primary">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                                Today, 2:00 PM - 4:00 PM
+                                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (Sticky Sidebar) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Order Summary Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg border border-border-light dark:border-border-dark p-6 lg:sticky lg:top-4">
+<h3 class="text-lg font-bold text-text-main-light dark:text-text-main-dark mb-6">Payment Summary</h3>
+<div class="flex flex-col gap-3 pb-6 border-b border-border-light dark:border-border-dark">
+<div class="flex justify-between text-sm">
+<span class="text-text-muted-light dark:text-text-muted-dark">Subtotal</span>
+<span class="text-text-main-light dark:text-text-main-dark font-medium">$75.50</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-text-muted-light dark:text-text-muted-dark">Delivery Fee</span>
+<span class="text-text-main-light dark:text-text-main-dark font-medium">$10.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-text-muted-light dark:text-text-muted-dark">Tax (8.5%)</span>
+<span class="text-text-main-light dark:text-text-main-dark font-medium">$7.27</span>
+</div>
+<div class="flex justify-between text-sm text-primary">
+<span class="font-medium">Discount (WELCOME10)</span>
+<span class="font-medium">-$7.55</span>
+</div>
+</div>
+<div class="flex justify-between items-end pt-4 mb-6">
+<span class="text-base font-bold text-text-main-light dark:text-text-main-dark">Grand Total</span>
+<span class="text-3xl font-black text-text-main-light dark:text-text-main-dark tracking-tight">$85.22</span>
+</div>
+<!-- Payment Method -->
+<div class="bg-background-light dark:bg-background-dark rounded-lg p-3 flex items-center justify-between mb-4 border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-3">
+<div class="w-10 h-6 bg-white rounded border border-gray-200 flex items-center justify-center">
+<!-- Simple Card Icon Graphic -->
+<svg class="w-6 h-6" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z" fill="#1A1A1A"></path><path d="M22 11H2V15H22V11Z" fill="#363636"></path><path d="M6 17H10" stroke="white" stroke-linecap="round" stroke-width="2"></path></svg>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark">Visa ending in 4242</span>
+<span class="text-[10px] text-text-muted-light dark:text-text-muted-dark">Exp: 12/25</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-green-600 dark:text-primary text-[20px]">check_circle</span>
+</div>
+<div class="text-center">
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Transaction ID: #TRX-9983-MM</p>
+</div>
+</div>
+<!-- Customer Note -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark mb-3">Customer Note</h4>
+<p class="text-sm italic text-text-muted-light dark:text-text-muted-dark">"Please include a card that says: 'Happy Anniversary to the love of my life!'"</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Spacer -->
+<div class="h-10"></div>
+</main>
+</div>
+</body></html>

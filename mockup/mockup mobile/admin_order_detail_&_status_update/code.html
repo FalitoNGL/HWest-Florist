@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Order Detail - HWest Florist</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "primary-content": "#052e11", // Dark text for contrast on bright green
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a3324",
+                        "subtle-light": "#e7f3eb",
+                        "subtle-dark": "#1e3f2d",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.375rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen pb-24">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-4 py-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold leading-tight tracking-tight text-center">Order #2491</h1>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Main Content -->
+<main class="p-4 flex flex-col gap-6">
+<!-- Status Card -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-xl p-5 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Current Status</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">In Production</h2>
+</div>
+<div class="bg-primary/20 text-green-800 dark:text-green-300 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">construction</span>
+                    Processing
+                </div>
+</div>
+<!-- Stepper (Modified PageIndicators) -->
+<div class="flex w-full flex-col gap-2">
+<div class="flex w-full flex-row items-center justify-between gap-1">
+<!-- Step 1: Done -->
+<div class="h-2 flex-1 rounded-full bg-primary"></div>
+<!-- Step 2: Done -->
+<div class="h-2 flex-1 rounded-full bg-primary"></div>
+<!-- Step 3: Active -->
+<div class="h-2 flex-1 rounded-full bg-primary shadow-[0_0_8px_rgba(19,236,91,0.6)]"></div>
+<!-- Step 4: Pending -->
+<div class="h-2 flex-1 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+<!-- Step 5: Pending -->
+<div class="h-2 flex-1 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+</div>
+<div class="flex justify-between text-[10px] font-medium text-gray-400 dark:text-gray-500 mt-1 px-1">
+<span>Ordered</span>
+<span>Approved</span>
+<span class="text-primary font-bold">Making</span>
+<span>Driver</span>
+<span>Done</span>
+</div>
+</div>
+</section>
+<!-- Payment Toggle (SegmentedButtons) -->
+<section>
+<div class="flex h-12 w-full items-center justify-center rounded-xl bg-subtle-light dark:bg-subtle-dark p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 text-gray-500 dark:text-gray-400 text-sm font-bold leading-normal transition-all duration-200 hover:text-gray-700 dark:hover:text-gray-200">
+<span class="truncate">Unpaid</span>
+<input class="invisible w-0" name="payment_status" type="radio" value="Unpaid"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 bg-white dark:bg-surface-dark shadow-[0_1px_3px_rgba(0,0,0,0.1)] text-primary-content dark:text-primary text-sm font-bold leading-normal transition-all duration-200">
+<span class="truncate flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                        Paid
+                    </span>
+<input checked="" class="invisible w-0" name="payment_status" type="radio" value="Paid"/>
+</label>
+</div>
+</section>
+<!-- Delivery Details -->
+<section>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight px-1 pb-3">Delivery Details</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm">
+<!-- Map Preview -->
+<div class="relative h-32 w-full bg-gray-200">
+<img class="w-full h-full object-cover opacity-80 dark:opacity-60" data-alt="Map showing delivery route to downtown area" data-location="Los Angeles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA4NOClRmAHragBzWWM_Nfo9T_iy0TzMXX1ieFPZvaes0fLYTaqpnvYbnGBmboH8mfFxS1H6_eBcoNjuICVGSm0uYHWPkEh-UVmY1Opfsddn3AzOejyJHJ6xNqSBy6ldcLx8C2UVuDaBRuTTX-uZ70xPKOc9tuge9dstBbP6kfDNplF4ahJiPUzjeNBLnlFAvVTyAKD-FqqfJMW9jwQa_NrsYiU-R8sJwTqNdg49ShFinBOQrOnvWm1VssPF7AGuvDL3pbIX5dkO_K"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-red-500">location_on</span>
+</div>
+</div>
+</div>
+<div class="p-4 space-y-4">
+<!-- Address -->
+<div class="flex gap-3 items-start">
+<div class="bg-subtle-light dark:bg-subtle-dark p-2 rounded-lg shrink-0">
+<span class="material-symbols-outlined text-gray-700 dark:text-gray-300">business</span>
+</div>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Destination</p>
+<p class="font-bold text-slate-900 dark:text-white">TechSpace Inc.</p>
+<p class="text-sm text-gray-600 dark:text-gray-300">123 Innovation Blvd, Suite 400<br/>San Francisco, CA 94103</p>
+</div>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-700 w-full"></div>
+<!-- Driver Assignment -->
+<div class="flex items-center justify-between">
+<div class="flex gap-3 items-center">
+<div class="relative">
+<img class="size-10 rounded-full object-cover border-2 border-white dark:border-gray-800 shadow-sm" data-alt="Portrait of delivery driver Michael" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdstMuUkkBolctTwcaj_JZ7daekgPBQDYthMuyGZVilMwADomBU2DJxhsTSCqeOYWwV7vbOC6l9gWBp86Zwn-LdABECRWk7cdubKs55MmycaZsmS3NMae8QRu356P4O_28KFEOVtcOYNMHo4p1VkOQPdrbKJreckIhPpHK40rn_Pq1oVdKG9KP4ZDoc1o-gUHX-Z-aY9Wh3FHHTBltAgtTT2VNDgqzhlp38vsmSugpAJCyswTxe2ISpTuETL4JRGS8bdNdGtdszYq5"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-primary-content text-[10px] px-1 rounded font-bold border border-white dark:border-gray-800">4.9★</div>
+</div>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Assigned Driver</p>
+<p class="font-bold text-sm text-slate-900 dark:text-white">Michael Chen</p>
+</div>
+</div>
+<button class="text-primary-content dark:text-primary bg-primary/20 hover:bg-primary/30 dark:hover:bg-primary/10 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors">
+                            Change
+                        </button>
+</div>
+<!-- Date & Time -->
+<div class="flex gap-4 pt-1">
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-white/5 px-3 py-2 rounded-lg flex-1">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span class="font-medium">Oct 24</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-white/5 px-3 py-2 rounded-lg flex-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span class="font-medium">2:00 PM - 4:00 PM</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer Info -->
+<section>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight px-1 pb-3">Customer</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 font-bold text-lg">
+                        SJ
+                    </div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Sarah Jenkins</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">+1 (555) 000-1234</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="size-9 rounded-full bg-subtle-light dark:bg-subtle-dark flex items-center justify-center text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined text-lg">call</span>
+</button>
+<button class="size-9 rounded-full bg-subtle-light dark:bg-subtle-dark flex items-center justify-center text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined text-lg">mail</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Order Items -->
+<section>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight px-1 pb-3">Items</h3>
+<div class="flex flex-col gap-3">
+<!-- Item 1 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-3 shadow-sm flex gap-3">
+<img class="size-16 rounded-lg object-cover bg-gray-100" data-alt="Luxurious white floral board arrangement" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZZFLkFRHJkanrioxYRNEen-gxrxi-gRQOpkOYQxMkpnoKAAx_hRxdmGCEg0ST7SYq-vvtU_NoTwqBTpG7khRcpjfqDNRyMeXYqVAwnnA-Gi7cZdnOGMeo2PqE-qMM4sqOQfocwWXPvo551x2RE1IC2HIGoYeAB0faGjGzXwmxM7hkOYqKz2DZnnopxuacWi9TZdDfQD1LstlNru5NCmJa6A5L4L9O2l_7dP0cEPP7OKkN2S3txXrvcQLAEV96Vu96Sc0f6BgtQS-7"/>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-sm text-slate-900 dark:text-white">Premium White Board</h4>
+<span class="font-bold text-sm text-slate-900 dark:text-white">$120.00</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">Large size, condolence theme</p>
+<div class="mt-1 text-xs font-semibold text-gray-500 bg-gray-100 dark:bg-white/10 self-start px-2 py-0.5 rounded">Qty: 1</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-3 shadow-sm flex gap-3">
+<img class="size-16 rounded-lg object-cover bg-gray-100" data-alt="Red roses bouquet wrapped in brown paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrMkoRe4o4AhtwB1g1qbRg2CkG0i-hSU41KQ2KicKxPpNVQyX95Y6Js8KTxoXE7C1YVHy8kcuQiYaYRXoYN03JtEAFfdRn-rveS5VJvtdw4N6xEJdfCz5Wu8CigU4fbI48Qih9auUmMu1iE_OjdTMLQDofwEhdT5o7fE5BbhbY8DgXZWL1-E-zOL8RLtWf5dzXlfO6mItxYFtZGoGe3DVBdGAfgHIHCqdnVCuuNT0mMPXZYuszT7tNPXKgc_Qzk_baNvWLG7cquWWv"/>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-sm text-slate-900 dark:text-white">Classic Red Roses</h4>
+<span class="font-bold text-sm text-slate-900 dark:text-white">$85.00</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">24 stems, romantic style</p>
+<div class="mt-1 text-xs font-semibold text-gray-500 bg-gray-100 dark:bg-white/10 self-start px-2 py-0.5 rounded">Qty: 2</div>
+</div>
+</div>
+</div>
+<!-- Totals -->
+<div class="mt-4 px-2 space-y-1">
+<div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+<span>Subtotal</span>
+<span>$290.00</span>
+</div>
+<div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+<span>Delivery Fee</span>
+<span>$15.00</span>
+</div>
+<div class="flex justify-between text-base font-bold text-slate-900 dark:text-white pt-2 border-t border-gray-200 dark:border-gray-700 mt-2">
+<span>Total</span>
+<span class="text-primary">$305.00</span>
+</div>
+</div>
+</section>
+<!-- Photo Proof Section (Placeholder) -->
+<section>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight px-1 pb-3">Proof of Delivery</h3>
+<button class="w-full h-24 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 flex flex-col items-center justify-center gap-2 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">add_a_photo</span>
+<span class="text-sm font-medium">Upload Photo</span>
+</button>
+</section>
+<!-- Bottom padding for scroll -->
+<div class="h-8"></div>
+</main>
+<!-- Sticky Footer Action -->
+<div class="fixed bottom-0 left-0 w-full bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 p-4 pb-8 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+<div class="flex gap-3">
+<button class="flex-1 bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-600 text-slate-900 dark:text-white h-12 rounded-lg font-bold text-sm shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                Contact Driver
+             </button>
+<button class="flex-[2] bg-primary hover:bg-green-400 text-primary-content h-12 rounded-lg font-bold text-base shadow-md flex items-center justify-center gap-2 transition-colors">
+<span>Update Status</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>
