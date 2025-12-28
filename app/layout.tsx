@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "HWest Florist Batam - Papan Bunga & Buket Premium",
     description: "Florist terbaik di Batam. Pesan papan bunga dan buket premium untuk pernikahan, grand opening, dan momen spesial.",
     siteName: "HWest Florist Batam",
-    locale: "en_US",
+    locale: "id_ID",
     type: "website",
   },
 };
@@ -93,7 +93,7 @@ export default function RootLayout({
                 "longitude": 104.0529
               },
               "url": "https://hwestflorist.shop",
-              "telephone": "+6282169512800",
+              "telephone": "+6281270121705",
               "priceRange": "$$"
             })
           }}

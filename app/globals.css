@@ -283,3 +283,36 @@
 .bg-300\% {
   background-size: 300% 300%;
 }
+
+/* Thin styled scrollbar for testimonials carousel */
+.scrollbar-hide {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 46, 147, 0.3) transparent;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  height: 4px;
+}
+
+.scrollbar-hide::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background: rgba(255, 46, 147, 0.3);
+  border-radius: 4px;
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 46, 147, 0.5);
+}
+
+/* Hide scrollbar completely for category filters etc */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

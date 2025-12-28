@@ -69,24 +69,26 @@ const NoiseOverlay = () => (
 // 2. Marquee Gallery Component
 const MarqueeGallery = () => {
   const images = [
-    "https://images.unsplash.com/photo-1596662951482-0c4ba647b675?q=80&w=600&auto=format&fit=crop", // Wedding Board
-    "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop", // Pink Rose Bouquet
-    "https://images.unsplash.com/photo-1582794543139-8ac92a9abf30?q=80&w=600&auto=format&fit=crop", // Flower Stand
-    "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=600&auto=format&fit=crop", // Sunflower
-    "https://images.unsplash.com/photo-1599707367072-cd6ad65f3268?q=80&w=600&auto=format&fit=crop", // Elegant Stand
-    "https://images.unsplash.com/photo-1563241527-3004b7be0ee0?q=80&w=600&auto=format&fit=crop", // Hand Bouquet
+    "https://images.unsplash.com/photo-1487530811176-3780de880c2d?q=80&w=600&auto=format&fit=crop", // Pink roses
+    "https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=600&auto=format&fit=crop", // Wedding flowers
+    "https://images.unsplash.com/photo-1455659817273-f96807779a8a?q=80&w=600&auto=format&fit=crop", // Red roses bouquet
+    "https://images.unsplash.com/photo-1508610048659-a06b669e3321?q=80&w=600&auto=format&fit=crop", // Colorful bouquet
+    "https://images.unsplash.com/photo-1522057384400-681b421cfebc?q=80&w=600&auto=format&fit=crop", // White roses
+    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=600&auto=format&fit=crop", // Spring flowers
+    "https://images.unsplash.com/photo-1518882605630-8eb699b8a5f3?q=80&w=600&auto=format&fit=crop", // Peony bouquet
+    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=600&auto=format&fit=crop", // Event flowers
   ];
 
   return (
     <div className="py-12 bg-[#200D18] overflow-hidden border-t border-white/5 relative z-10">
-      <div className="flex items-center gap-4 mb-8 justify-center">
+      <a href="https://www.instagram.com/hwest_florist/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 mb-8 justify-center hover:opacity-80 transition-opacity cursor-pointer">
         <Instagram className="w-5 h-5 text-[#FF2E93]" />
-        <span className="text-sm font-bold uppercase tracking-[0.2em] text-white/50">Follow Us @HWestFlorist</span>
-      </div>
+        <span className="text-sm font-bold uppercase tracking-[0.2em] text-white/50">Follow Us @hwest_florist</span>
+      </a>
       <div className="flex w-full overflow-hidden mask-linear-fade">
         <div className="flex gap-4 animate-marquee whitespace-nowrap will-change-transform">
           {[...images, ...images, ...images].map((src, i) => (
-            <div key={i} className="relative w-[250px] h-[250px] flex-shrink-0 rounded-2xl overflow-hidden hover:scale-95 transition-transform duration-500 cursor-pointer grayscale hover:grayscale-0 border border-white/5">
+            <div key={i} className="relative w-[250px] h-[250px] flex-shrink-0 rounded-2xl overflow-hidden hover:scale-95 transition-transform duration-500 cursor-pointer md:grayscale md:hover:grayscale-0 border border-white/5">
               <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${src})` }} />
             </div>
           ))}
@@ -272,6 +274,19 @@ export default function LandingPage() {
           <p className="max-w-xl text-base md:text-xl text-gray-200 font-light leading-relaxed drop-shadow-md mx-auto">
             Dirangkai khusus untuk momen spesial Anda. Pengiriman cepat dan kualitas terbaik di Batam.
           </p>
+
+          {/* Feature Badges */}
+          <div className="flex flex-wrap gap-3 justify-center pt-2">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-medium text-white/90">
+              <Sparkles className="w-4 h-4 text-[#FF2E93]" />
+              Bisa Request Budget
+            </span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-medium text-white/90">
+              <Sparkles className="w-4 h-4 text-[#c026d3]" />
+              Bisa Request Tema
+            </span>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4">
             <Link href="/shop" className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-300 rounded-full hover:scale-105 shadow-[0_0_30px_rgba(255,46,147,0.4)] overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-[#FF2E93] to-[#c026d3] group-hover:from-[#E01D83] group-hover:to-[#a21caf] transition-all" />
@@ -484,8 +499,9 @@ export default function LandingPage() {
                     <div>
                       <h3 className="text-xl font-bold text-white mb-2">HWest Florist Batam</h3>
                       <p className="text-gray-400 leading-relaxed">
-                        Ruko Grand Batam, Blok B No. 12<br />
-                        Batam, Kepulauan Riau, Indonesia
+                        Pasar STC, Jl. Kav. Baru Nato Blk. E No.10<br />
+                        Sungai Langkai, Kec. Sagulung<br />
+                        Kota Batam, Kepulauan Riau 29439
                       </p>
                     </div>
                   </div>
@@ -500,7 +516,7 @@ export default function LandingPage() {
                       <h3 className="text-xl font-bold text-white mb-2">Hubungi Kami</h3>
                       <p className="text-gray-400 leading-relaxed">
                         WhatsApp: +62 821-6951-2800<br />
-                        Buka Setiap Hari: 08:00 - 20:00 WIB
+                        Buka Setiap Hari: 08:00 - 22:00 WIB
                       </p>
                     </div>
                   </div>
@@ -591,7 +607,7 @@ export default function LandingPage() {
             <div>
               <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-sm">Contact</h4>
               <ul className="space-y-4 text-sm">
-                <li className="flex items-start gap-3"><MapPin className="w-5 h-5 text-[#FF2E93] shrink-0 mt-0.5" /> <span className="opacity-80">Ruko Grand Batam, Blok B No. 12<br />Batam, Indonesia</span></li>
+                <li className="flex items-start gap-3"><MapPin className="w-5 h-5 text-[#FF2E93] shrink-0 mt-0.5" /> <span className="opacity-80">Pasar STC, Blk. E No.10<br />Sagulung, Batam 29439</span></li>
                 <li className="flex items-center gap-3"><Phone className="w-5 h-5 text-[#FF2E93] shrink-0" /> <span className="opacity-80">+62 821-6951-2800</span></li>
               </ul>
             </div>

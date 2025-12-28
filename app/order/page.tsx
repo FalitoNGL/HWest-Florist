@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { MapPin, MessageCircle, ArrowRight, Flower2, Calendar, User, FileText, Heart, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Header } from "@/components/layout/header";
+import { BottomNav } from "@/components/mobile/bottom-nav";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 
@@ -128,7 +130,7 @@ const FloatingHearts = () => {
 
 
 export default function OrderPage() {
-    const whatsappNumber = "6282169512800";
+    const whatsappNumber = process.env.NEXT_PUBLIC_WA_PHONE || "6281270121705";
 
     const [formData, setFormData] = useState({
         name: "",
@@ -145,8 +147,15 @@ export default function OrderPage() {
 
     const productTypes = [
         { value: "BOARD_FLOWER", label: "Papan Bunga", desc: "Untuk pernikahan, pembukaan, duka cita", icon: "🌸" },
-        { value: "BOUQUET", label: "Buket Tangan", desc: "Untuk hadiah, anniversary, graduation", icon: "💐" },
-        { value: "STANDING_FLOWER", label: "Bunga Standing", desc: "Untuk acara formal dan resmi", icon: "🌷" },
+        { value: "BOARD_RUSTIC", label: "Papan Rustik", desc: "Papan bunga dengan tema rustic", icon: "🪵" },
+        { value: "BOARD_ACRYLIC", label: "Papan Akrilik", desc: "Papan bunga modern dengan akrilik", icon: "✨" },
+        { value: "BOUQUET", label: "Buket Bunga", desc: "Untuk hadiah, anniversary, graduation", icon: "💐" },
+        { value: "BOUQUET_MONEY", label: "Buket Uang", desc: "Buket dengan uang asli", icon: "💵" },
+        { value: "BOUQUET_SNACK", label: "Buket Snack", desc: "Buket berisi snack favorit", icon: "🍫" },
+        { value: "TABLE_FLOWER", label: "Bunga Meja", desc: "Rangkaian bunga untuk dekorasi meja", icon: "🌺" },
+        { value: "STANDING_FLOWER", label: "Standing Flower", desc: "Untuk acara formal dan resmi", icon: "🌷" },
+        { value: "DECORATION", label: "Dekorasi Bunga", desc: "Untuk dekorasi acara", icon: "🎊" },
+        { value: "CUSTOM", label: "Custom", desc: "Pesan sesuai keinginan Anda", icon: "🎨" },
     ];
 
     const occasions = [
@@ -199,18 +208,34 @@ export default function OrderPage() {
         return encodeURIComponent(message);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // 1. Call API to save order and trigger webhook
+        try {
+            const response = await fetch('/api/order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            const result = await response.json();
+            console.log("Order API response:", result);
+        } catch (error) {
+            console.error("Order API failed:", error);
+            // Continue to WhatsApp even if API fails
+        }
+
+        // 2. Generate WhatsApp message
         const message = generateWhatsAppMessage();
 
-        // Show toast notification
+        // 3. Show toast notification
         toast({
             title: "Pesanan Dikirim!",
             description: "Anda akan diarahkan ke WhatsApp untuk konfirmasi.",
             variant: "success",
         });
 
-        // Small delay before opening WhatsApp
+        // 4. Small delay before opening WhatsApp
         setTimeout(() => {
             window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
         }, 500);

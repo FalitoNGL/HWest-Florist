@@ -55,7 +55,7 @@ export async function createOrder(prevState: unknown, formData: FormData) {
     }
 
     const data = validated.data;
-    const WA_PHONE = process.env.NEXT_PUBLIC_WA_PHONE || "6282169512800";
+    const WA_PHONE = process.env.NEXT_PUBLIC_WA_PHONE || "6281270121705";
 
     try {
         // 3. Save to DB (Hybrid Approach: Save for stats, but rely on WA for actual order)
@@ -85,25 +85,70 @@ export async function createOrder(prevState: unknown, formData: FormData) {
         });
         console.log("Order saved to DB:", order.id);
 
-        // 3.5 Send Email Notification
-        await resend.emails.send({
-            from: 'HWest Florist <onboarding@resend.dev>', // Free tier default
-            to: ['falitoeriano17@gmail.com'], // Updated to user's email
-            subject: `New Order: ${order.id.slice(0, 8)}`,
-            react: OrderEmail({
-                orderId: order.id,
-                customerName: data.recipientName, // Ideally sender, but recipient is mandatory field
-                totalAmount: 0,
-                items: [{
-                    productName: data.productName,
-                    quantity: 1,
-                    price: 0
-                }]
-            })
-        });
+        // 3.5 Send Email Notification (in separate try-catch)
+        try {
+            await resend.emails.send({
+                from: 'HWest Florist <onboarding@resend.dev>',
+                to: ['falitoeriano17@gmail.com'],
+                subject: `New Order: ${order.id.slice(0, 8)}`,
+                react: OrderEmail({
+                    orderId: order.id,
+                    customerName: data.recipientName,
+                    totalAmount: 0,
+                    items: [{
+                        productName: data.productName,
+                        quantity: 1,
+                        price: 0
+                    }]
+                })
+            });
+            console.log("Email sent successfully");
+        } catch (emailError) {
+            console.error("Email failed:", emailError);
+        }
+
+        // 3.6 Send n8n Webhook Notification (independent of email)
+        const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL;
+        console.log("n8n webhook URL:", n8nWebhookUrl);
+        if (n8nWebhookUrl) {
+            try {
+                const webhookResponse = await fetch(n8nWebhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        event: 'new_order',
+                        orderId: order.id,
+                        timestamp: new Date().toISOString(),
+                        customer: {
+                            name: data.recipientName,
+                            phone: data.recipientPhone,
+                            address: data.deliveryAddress,
+                        },
+                        product: {
+                            id: data.productId,
+                            name: data.productName,
+                            type: data.productType,
+                        },
+                        delivery: {
+                            time: data.deliveryTime.toISOString(),
+                            greetingType: data.greetingType,
+                            targetName: data.targetName,
+                            senderName: data.senderName,
+                            cardMessage: data.cardMessage,
+                            notes: data.notes,
+                        },
+                    }),
+                });
+                console.log("n8n webhook sent successfully, status:", webhookResponse.status);
+            } catch (webhookError) {
+                console.error("n8n webhook failed:", webhookError);
+            }
+        } else {
+            console.log("N8N_WEBHOOK_URL not configured");
+        }
 
     } catch (error) {
-        console.error("DB/Email Failed:", error);
+        console.error("DB Failed:", error);
         // We continue to WA even if DB fails
     }
 
@@ -111,7 +156,8 @@ export async function createOrder(prevState: unknown, formData: FormData) {
     const dateStr = format(data.deliveryTime, 'dd MMM yyyy HH:mm');
 
     let customText = "";
-    if (data.productType === 'BOARD_FLOWER') {
+    const boardTypes = ['BOARD_FLOWER', 'BOARD_RUSTIC', 'BOARD_ACRYLIC'];
+    if (boardTypes.includes(data.productType)) {
         customText = `
 *Header*: ${data.greetingType || '-'}
 *Text*: ${data.targetName || '-'}

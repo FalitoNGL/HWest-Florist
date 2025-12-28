@@ -5,31 +5,53 @@ import { usePathname } from "next/navigation";
 import { LayoutDashboard, Package, Settings, ShoppingBag, LogOut, Store } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 export function AdminSidebar() {
     const pathname = usePathname();
+    const [pendingCount, setPendingCount] = useState(0);
+
+    // Fetch pending order count
+    useEffect(() => {
+        const fetchPendingCount = async () => {
+            try {
+                const res = await fetch('/api/admin/pending-count');
+                if (res.ok) {
+                    const data = await res.json();
+                    setPendingCount(data.count || 0);
+                }
+            } catch {
+                // Silently fail
+            }
+        };
+        fetchPendingCount();
+        // Refresh every 30 seconds
+        const interval = setInterval(fetchPendingCount, 30000);
+        return () => clearInterval(interval);
+    }, []);
 
     const routes = [
         {
-            label: "Dashboard",
+            label: "Dasbor",
             icon: LayoutDashboard,
             href: "/admin/dashboard",
             active: pathname === "/admin/dashboard",
         },
         {
-            label: "Orders",
+            label: "Pesanan",
             icon: ShoppingBag,
             href: "/admin/orders",
             active: pathname.startsWith("/admin/orders"),
+            badge: pendingCount > 0 ? pendingCount : null,
         },
         {
-            label: "Products",
+            label: "Produk",
             icon: Package,
             href: "/admin/products",
             active: pathname.startsWith("/admin/products"),
         },
         {
-            label: "Settings",
+            label: "Pengaturan",
             icon: Settings,
             href: "/admin/settings",
             active: pathname === "/admin/settings",
@@ -64,6 +86,12 @@ export function AdminSidebar() {
                         >
                             <route.icon className={cn("h-5 w-5", route.active ? "text-primary" : "text-slate-400 group-hover:text-white")} />
                             {route.label}
+                            {/* Badge for pending orders */}
+                            {'badge' in route && route.badge && (
+                                <span className="ml-auto bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full animate-pulse">
+                                    {route.badge}
+                                </span>
+                            )}
                             {route.active && (
                                 <div className="absolute right-0 top-0 bottom-0 w-1 bg-primary rounded-l-full" />
                             )}
@@ -77,13 +105,13 @@ export function AdminSidebar() {
                 <Link href="/">
                     <Button variant="ghost" className="w-full justify-start text-slate-400 hover:text-white hover:bg-slate-800">
                         <Store className="mr-2 h-4 w-4" />
-                        View Store
+                        Lihat Toko
                     </Button>
                 </Link>
                 <form action="/auth/signout" method="post">
                     <Button variant="ghost" className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-red-900/20">
                         <LogOut className="mr-2 h-4 w-4" />
-                        Log Out
+                        Keluar
                     </Button>
                 </form>
             </div>

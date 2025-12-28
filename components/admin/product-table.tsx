@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react";
-import { SerializedProduct, deleteProduct } from "@/app/actions/product";
+import { SerializedProduct, deleteProduct, duplicateProduct } from "@/app/actions/product";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Edit, Trash2, Plus, Search, MoreHorizontal, Filter } from "lucide-react";
+import { Edit, Trash2, Plus, Search, MoreHorizontal, Filter, Copy } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -34,14 +34,24 @@ export function ProductTable({ products }: ProductTableProps) {
     });
 
     const handleDelete = async (id: string) => {
-        if (!confirm("Are you sure you want to delete this product?")) return;
+        if (!confirm("Yakin ingin menghapus produk ini?")) return;
 
         const res = await deleteProduct(id);
         if (res.success) {
-            toast.success("Product deleted");
+            toast.success("Produk berhasil dihapus");
             router.refresh();
         } else {
-            toast.error("Failed to delete product");
+            toast.error("Gagal menghapus produk");
+        }
+    };
+
+    const handleDuplicate = async (id: string) => {
+        const res = await duplicateProduct(id);
+        if (res.success) {
+            toast.success("Produk berhasil diduplikat");
+            router.refresh();
+        } else {
+            toast.error(res.error || "Gagal menduplikat produk");
         }
     };
 
@@ -53,7 +63,7 @@ export function ProductTable({ products }: ProductTableProps) {
                     <div className="relative flex-1 max-w-sm">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                         <Input
-                            placeholder="Search products..."
+                            placeholder="Cari produk..."
                             className="pl-9 bg-slate-50 dark:bg-slate-900 border-none focus-visible:ring-1"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
@@ -65,21 +75,21 @@ export function ProductTable({ products }: ProductTableProps) {
                             <SelectValue placeholder="Filter Type" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="ALL">All Types</SelectItem>
-                            <SelectItem value="BOUQUET">Bouquets</SelectItem>
-                            <SelectItem value="FLOWER_BOARD">Flower Boards</SelectItem>
+                            <SelectItem value="ALL">Semua Tipe</SelectItem>
+                            <SelectItem value="BOUQUET">Buket</SelectItem>
+                            <SelectItem value="FLOWER_BOARD">Papan Bunga</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
                 <div className="text-sm text-slate-500 font-medium">
-                    Showing <span className="text-slate-900 dark:text-white font-bold">{filteredProducts.length}</span> products
+                    Menampilkan <span className="text-slate-900 dark:text-white font-bold">{filteredProducts.length}</span> produk
                 </div>
             </div>
 
             {/* Mobile Header & Controls */}
             <div className="md:hidden space-y-4 -mx-4 px-4 pt-2">
                 <div className="flex items-center justify-between">
-                    <h2 className="text-slate-900 dark:text-white text-xl font-extrabold tracking-tight">Product Catalog</h2>
+                    <h2 className="text-slate-900 dark:text-white text-xl font-extrabold tracking-tight">Katalog Produk</h2>
                     <Link href="/admin/products/new">
                         <button className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-slate-900 shadow-lg shadow-primary/20 transition-transform active:scale-95">
                             <Plus className="font-bold h-6 w-6" />
@@ -94,7 +104,7 @@ export function ProductTable({ products }: ProductTableProps) {
                     </div>
                     <input
                         className="h-full w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 text-base font-medium border-none focus:ring-0 p-0 pr-4 outline-none"
-                        placeholder="Search products..."
+                        placeholder="Cari produk..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
@@ -114,7 +124,7 @@ export function ProductTable({ products }: ProductTableProps) {
                                         : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300"
                                 )}
                             >
-                                {type === "ALL" ? "All" : type === "FLOWER_BOARD" ? "Boards" : "Bouquets"}
+                                {type === "ALL" ? "Semua" : type === "FLOWER_BOARD" ? "Papan" : "Buket"}
                             </button>
                         ))}
                     </div>
@@ -126,11 +136,11 @@ export function ProductTable({ products }: ProductTableProps) {
                 <Table>
                     <TableHeader>
                         <TableRow className="hover:bg-transparent border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
-                            <TableHead className="py-4 pl-6 text-xs font-bold uppercase tracking-wider text-slate-500">Name</TableHead>
-                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Type</TableHead>
-                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Price</TableHead>
+                            <TableHead className="py-4 pl-6 text-xs font-bold uppercase tracking-wider text-slate-500">Nama</TableHead>
+                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Tipe</TableHead>
+                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Harga</TableHead>
                             <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Status</TableHead>
-                            <TableHead className="py-4 pr-6 text-right text-xs font-bold uppercase tracking-wider text-slate-500">Actions</TableHead>
+                            <TableHead className="py-4 pr-6 text-right text-xs font-bold uppercase tracking-wider text-slate-500">Aksi</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -145,7 +155,19 @@ export function ProductTable({ products }: ProductTableProps) {
                                     </div>
                                 </TableCell>
                                 <TableCell className="py-4 text-slate-600 dark:text-slate-300">
-                                    {product.type === "BOARD_FLOWER" ? "Papan Bunga" : product.type === "BOUQUET" ? "Buket" : product.type === "STANDING_FLOWER" ? "Standing" : "Rental"}
+                                    {
+                                        {
+                                            BOARD_FLOWER: "Papan Bunga",
+                                            BOARD_RUSTIC: "Papan Rustik",
+                                            BOARD_ACRYLIC: "Papan Akrilik",
+                                            BOUQUET: "Buket Bunga",
+                                            BOUQUET_MONEY: "Buket Uang",
+                                            BOUQUET_SNACK: "Buket Snack",
+                                            TABLE_FLOWER: "Bunga Meja",
+                                            STANDING_FLOWER: "Standing",
+                                            DECORATION: "Dekorasi",
+                                            CUSTOM: "Custom"
+                                        }[product.type] || product.type}
                                 </TableCell>
                                 <TableCell className="py-4 font-mono font-medium text-slate-900 dark:text-white">
                                     Rp {Number(product.price).toLocaleString("id-ID")}
@@ -162,12 +184,15 @@ export function ProductTable({ products }: ProductTableProps) {
                                     </span>
                                 </TableCell>
                                 <TableCell className="pr-6 py-4 text-right space-x-1">
+                                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-500 hover:text-blue-600 hover:bg-blue-50" onClick={() => handleDuplicate(product.id)} title="Duplikat">
+                                        <Copy className="h-4 w-4" />
+                                    </Button>
                                     <Link href={`/admin/products/${product.id}`}>
-                                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-500 hover:text-primary hover:bg-primary/10">
+                                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-500 hover:text-primary hover:bg-primary/10" title="Edit">
                                             <Edit className="h-4 w-4" />
                                         </Button>
                                     </Link>
-                                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-500 hover:text-red-600 hover:bg-red-50" onClick={() => handleDelete(product.id)}>
+                                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-500 hover:text-red-600 hover:bg-red-50" onClick={() => handleDelete(product.id)} title="Hapus">
                                         <Trash2 className="h-4 w-4" />
                                     </Button>
                                 </TableCell>
@@ -210,13 +235,16 @@ export function ProductTable({ products }: ProductTableProps) {
                                         </button>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent align="end">
+                                        <DropdownMenuItem onClick={() => handleDuplicate(product.id)}>
+                                            <Copy className="h-4 w-4 mr-2" /> Duplikat
+                                        </DropdownMenuItem>
                                         <Link href={`/admin/products/${product.id}`}>
                                             <DropdownMenuItem>
                                                 <Edit className="h-4 w-4 mr-2" /> Edit
                                             </DropdownMenuItem>
                                         </Link>
                                         <DropdownMenuItem className="text-red-600" onClick={() => handleDelete(product.id)}>
-                                            <Trash2 className="h-4 w-4 mr-2" /> Delete
+                                            <Trash2 className="h-4 w-4 mr-2" /> Hapus
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>

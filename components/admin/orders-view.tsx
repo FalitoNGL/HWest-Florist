@@ -81,7 +81,7 @@ export function OrdersView({ orders }: OrdersViewProps) {
                     <div className="relative flex-1 max-w-sm">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                         <Input
-                            placeholder="Search order ID, recipient..."
+                            placeholder="Cari ID pesanan, penerima..."
                             className="pl-9 bg-slate-50 dark:bg-slate-900 border-none focus-visible:ring-1"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
@@ -93,18 +93,18 @@ export function OrdersView({ orders }: OrdersViewProps) {
                             <SelectValue placeholder="Filter Status" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="ALL">All Status</SelectItem>
-                            <SelectItem value="PENDING_PAYMENT">Pending Payment</SelectItem>
-                            <SelectItem value="PAID">Paid</SelectItem>
-                            <SelectItem value="IN_PRODUCTION">In Production</SelectItem>
-                            <SelectItem value="ON_DELIVERY">On Delivery</SelectItem>
-                            <SelectItem value="COMPLETED">Completed</SelectItem>
-                            <SelectItem value="CANCELLED">Cancelled</SelectItem>
+                            <SelectItem value="ALL">Semua Status</SelectItem>
+                            <SelectItem value="PENDING_PAYMENT">Menunggu Bayar</SelectItem>
+                            <SelectItem value="PAID">Lunas</SelectItem>
+                            <SelectItem value="IN_PRODUCTION">Dalam Produksi</SelectItem>
+                            <SelectItem value="ON_DELIVERY">Dalam Pengiriman</SelectItem>
+                            <SelectItem value="COMPLETED">Selesai</SelectItem>
+                            <SelectItem value="CANCELLED">Dibatalkan</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
                 <div className="text-sm text-slate-500 font-medium">
-                    Showing <span className="text-slate-900 dark:text-white font-bold">{filteredOrders.length}</span> orders
+                    Menampilkan <span className="text-slate-900 dark:text-white font-bold">{filteredOrders.length}</span> pesanan
                 </div>
             </div>
 
@@ -112,7 +112,7 @@ export function OrdersView({ orders }: OrdersViewProps) {
             <div className="md:hidden space-y-4 -mx-4 px-4 pt-2">
                 {/* Mobile Page Header (Mockup Style) */}
                 <div className="flex items-center justify-between">
-                    <h2 className="text-slate-900 dark:text-white text-xl font-extrabold tracking-tight">Orders</h2>
+                    <h2 className="text-slate-900 dark:text-white text-xl font-extrabold tracking-tight">Pesanan</h2>
                     <button className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-slate-900 shadow-lg shadow-primary/20 transition-transform active:scale-95">
                         <Plus className="font-bold h-6 w-6" />
                     </button>
@@ -125,7 +125,7 @@ export function OrdersView({ orders }: OrdersViewProps) {
                     </div>
                     <input
                         className="h-full w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 text-base font-medium border-none focus:ring-0 p-0 pr-4 outline-none"
-                        placeholder="Search by order # or name..."
+                        placeholder="Cari berdasarkan ID atau nama..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
@@ -145,7 +145,11 @@ export function OrdersView({ orders }: OrdersViewProps) {
                                         : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300"
                                 )}
                             >
-                                {status === "ALL" ? "All" : status.replace("_", " ")}
+                                {status === "ALL" ? "Semua" :
+                                    status === "PENDING_PAYMENT" ? "Menunggu" :
+                                        status === "PAID" ? "Lunas" :
+                                            status === "IN_PRODUCTION" ? "Produksi" :
+                                                status === "COMPLETED" ? "Selesai" : status}
                             </button>
                         ))}
                     </div>
@@ -157,12 +161,12 @@ export function OrdersView({ orders }: OrdersViewProps) {
                 <Table>
                     <TableHeader>
                         <TableRow className="hover:bg-transparent border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
-                            <TableHead className="py-4 pl-6 text-xs font-bold uppercase tracking-wider text-slate-500">Order ID</TableHead>
-                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Date</TableHead>
-                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Recipient</TableHead>
+                            <TableHead className="py-4 pl-6 text-xs font-bold uppercase tracking-wider text-slate-500">ID Pesanan</TableHead>
+                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Tanggal</TableHead>
+                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Penerima</TableHead>
                             <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Total</TableHead>
                             <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Status</TableHead>
-                            <TableHead className="py-4 pr-6 text-right text-xs font-bold uppercase tracking-wider text-slate-500">Action</TableHead>
+                            <TableHead className="py-4 pr-6 text-right text-xs font-bold uppercase tracking-wider text-slate-500">Aksi</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -202,8 +206,8 @@ export function OrdersView({ orders }: OrdersViewProps) {
                                 <TableCell colSpan={6} className="text-center py-12 text-slate-500">
                                     <div className="flex flex-col items-center justify-center">
                                         <Search className="h-12 w-12 text-slate-300 mb-3" />
-                                        <p className="text-lg font-medium text-slate-900 dark:text-white">No orders found</p>
-                                        <p className="text-sm text-slate-500">Try adjusting your search or filter.</p>
+                                        <p className="text-lg font-medium text-slate-900 dark:text-white">Tidak ada pesanan</p>
+                                        <p className="text-sm text-slate-500">Coba sesuaikan pencarian atau filter Anda.</p>
                                     </div>
                                 </TableCell>
                             </TableRow>
@@ -215,13 +219,13 @@ export function OrdersView({ orders }: OrdersViewProps) {
             {/* Mobile Card List View */}
             <div className="md:hidden space-y-6 pb-20">
                 {filteredOrders.length === 0 && (
-                    <div className="text-center py-10 text-gray-500">No orders found.</div>
+                    <div className="text-center py-10 text-gray-500">Tidak ada pesanan ditemukan.</div>
                 )}
 
                 {[
-                    { title: "Today", data: todayOrders },
-                    { title: "Yesterday", data: yesterdayOrders },
-                    { title: "Older", data: otherOrders }
+                    { title: "Hari Ini", data: todayOrders },
+                    { title: "Kemarin", data: yesterdayOrders },
+                    { title: "Sebelumnya", data: otherOrders }
                 ].map((section) => (
                     section.data.length > 0 && (
                         <div key={section.title} className="space-y-3">

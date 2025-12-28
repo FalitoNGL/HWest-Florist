@@ -114,3 +114,36 @@ export async function deleteProduct(id: string) {
         return { success: false, error: "Failed to delete product" };
     }
 }
+
+export async function duplicateProduct(id: string) {
+    try {
+        // Get the original product
+        const original = await prisma.product.findUnique({
+            where: { id }
+        });
+
+        if (!original) {
+            return { success: false, error: "Produk tidak ditemukan" };
+        }
+
+        // Create a copy with "(Salinan)" appended to name
+        const newProduct = await prisma.product.create({
+            data: {
+                name: `${original.name} (Salinan)`,
+                description: original.description,
+                price: original.price,
+                image: original.image,
+                type: original.type,
+                isAvailable: original.isAvailable,
+                stock: original.stock
+            }
+        });
+
+        revalidatePath('/admin/products');
+        revalidatePath('/catalog');
+        return { success: true, data: { id: newProduct.id } };
+    } catch (error) {
+        console.error("Duplicate product error:", error);
+        return { success: false, error: "Gagal menduplikat produk" };
+    }
+}

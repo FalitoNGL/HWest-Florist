@@ -9,7 +9,7 @@ export function BottomNav() {
     const navItems = [
         { name: "Beranda", href: "/", icon: "home" },
         { name: "Belanja", href: "/shop", icon: "storefront" },
-        { name: "Lacak", href: "/track", icon: "receipt_long" },
+        { name: "Kontak", href: "/contact", icon: "call" },
         { name: "Akun", href: "/login", icon: "person" },
     ];
 

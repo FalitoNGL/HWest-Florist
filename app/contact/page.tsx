@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { MapPin, Phone, Instagram, Facebook, ArrowRight, Clock, MessageCircle, Sparkles, Flower2, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Header } from "@/components/layout/header";
 import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 
@@ -50,16 +51,20 @@ const Reveal = ({ children, className, delay = 0 }: { children: React.ReactNode,
     );
 };
 
-// Animated Floating Petals
+// Animated Floating Petals - using fixed values to avoid hydration mismatch
 const FloatingPetals = () => {
-    const petals = [...Array(15)].map((_, i) => ({
-        id: i,
-        size: 10 + Math.random() * 20,
-        left: Math.random() * 100,
-        delay: Math.random() * 10,
-        duration: 15 + Math.random() * 15,
-        rotation: Math.random() * 360,
-    }));
+    const petals = [
+        { id: 0, size: 18, left: 5, delay: 0, duration: 18, rotation: 45 },
+        { id: 1, size: 22, left: 15, delay: 2, duration: 22, rotation: 90 },
+        { id: 2, size: 16, left: 25, delay: 4, duration: 20, rotation: 135 },
+        { id: 3, size: 20, left: 35, delay: 1, duration: 25, rotation: 180 },
+        { id: 4, size: 24, left: 45, delay: 3, duration: 19, rotation: 225 },
+        { id: 5, size: 17, left: 55, delay: 5, duration: 21, rotation: 270 },
+        { id: 6, size: 21, left: 65, delay: 2, duration: 23, rotation: 315 },
+        { id: 7, size: 19, left: 75, delay: 4, duration: 17, rotation: 60 },
+        { id: 8, size: 23, left: 85, delay: 1, duration: 24, rotation: 120 },
+        { id: 9, size: 15, left: 95, delay: 3, duration: 16, rotation: 200 },
+    ];
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -104,15 +109,15 @@ const FloatingPetals = () => {
     );
 };
 
-// Animated Hearts
+// Animated Hearts - using fixed values to avoid hydration mismatch
 const FloatingHearts = () => {
-    const hearts = [...Array(8)].map((_, i) => ({
-        id: i,
-        size: 12 + Math.random() * 16,
-        left: 10 + Math.random() * 80,
-        delay: Math.random() * 8,
-        duration: 8 + Math.random() * 8,
-    }));
+    const hearts = [
+        { id: 0, size: 16, left: 15, delay: 0, duration: 12 },
+        { id: 1, size: 20, left: 30, delay: 2, duration: 14 },
+        { id: 2, size: 18, left: 50, delay: 4, duration: 16 },
+        { id: 3, size: 22, left: 70, delay: 1, duration: 13 },
+        { id: 4, size: 17, left: 85, delay: 3, duration: 15 },
+    ];
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -157,7 +162,7 @@ const DecorativeLines = () => (
 );
 
 export default function ContactPage() {
-    const whatsappNumber = "6282169512800";
+    const whatsappNumber = process.env.NEXT_PUBLIC_WA_PHONE || "6281270121705";
     const whatsappMessage = encodeURIComponent("Halo HWest Florist, saya ingin bertanya tentang...");
 
     const socialLinks = [
@@ -185,6 +190,9 @@ export default function ContactPage() {
 
     return (
         <div className="min-h-screen bg-[#2A121F] text-white relative overflow-hidden">
+            {/* Header Navigation */}
+            <Header />
+
             {/* Animated Background Effects */}
             <GlowingOrbs />
             <FloatingPetals />
@@ -309,9 +317,9 @@ export default function ContactPage() {
                                             Alamat Toko
                                         </h3>
                                         <p className="text-gray-300 leading-relaxed mb-6">
-                                            Ruko Grand Batam, Blok B No. 12<br />
-                                            Batam, Kepulauan Riau<br />
-                                            Indonesia
+                                            Pasar STC, Jl. Kav. Baru Nato Blk. E No.10<br />
+                                            Sungai Langkai, Kec. Sagulung<br />
+                                            Kota Batam, Kepulauan Riau 29439
                                         </p>
                                         <div className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 group-hover:border-[#FF2E93]/30 transition-colors">
                                             <div className="relative">
@@ -320,7 +328,7 @@ export default function ContactPage() {
                                             </div>
                                             <div>
                                                 <div className="text-sm font-medium text-white">Jam Operasional</div>
-                                                <div className="text-sm text-gray-400">Setiap Hari: 08:00 - 20:00 WIB</div>
+                                                <div className="text-sm text-gray-400">Setiap Hari: 08:00 - 22:00 WIB</div>
                                             </div>
                                         </div>
                                     </div>

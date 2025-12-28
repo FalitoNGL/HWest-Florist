@@ -20,8 +20,8 @@ export function Header() {
                 <Link href="/shop" className="text-sm font-medium text-white/90 hover:text-[#FF2E93] transition-colors">
                     Belanja
                 </Link>
-                <Link href="/track" className="text-sm font-medium text-white/90 hover:text-[#FF2E93] transition-colors">
-                    Lacak Pesanan
+                <Link href="/contact" className="text-sm font-medium text-white/90 hover:text-[#FF2E93] transition-colors">
+                    Kontak
                 </Link>
                 <Link href="/about" className="text-sm font-medium text-white/90 hover:text-[#FF2E93] transition-colors">
                     Tentang Kami

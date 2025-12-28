@@ -24,20 +24,50 @@ const categoryColors: Record<string, { accent: string; glow: string; badge: stri
         glow: "shadow-pink-500/20",
         badge: "bg-pink-500"
     },
+    BOUQUET_MONEY: {
+        accent: "from-emerald-500 to-green-500",
+        glow: "shadow-emerald-500/20",
+        badge: "bg-emerald-500"
+    },
+    BOUQUET_SNACK: {
+        accent: "from-amber-500 to-orange-500",
+        glow: "shadow-amber-500/20",
+        badge: "bg-amber-500"
+    },
     BOARD_FLOWER: {
         accent: "from-purple-500 to-violet-500",
         glow: "shadow-purple-500/20",
         badge: "bg-purple-500"
+    },
+    BOARD_RUSTIC: {
+        accent: "from-amber-600 to-yellow-600",
+        glow: "shadow-amber-600/20",
+        badge: "bg-amber-600"
+    },
+    BOARD_ACRYLIC: {
+        accent: "from-cyan-500 to-blue-500",
+        glow: "shadow-cyan-500/20",
+        badge: "bg-cyan-500"
+    },
+    TABLE_FLOWER: {
+        accent: "from-rose-500 to-pink-500",
+        glow: "shadow-rose-500/20",
+        badge: "bg-rose-500"
     },
     STANDING_FLOWER: {
         accent: "from-fuchsia-500 to-pink-500",
         glow: "shadow-fuchsia-500/20",
         badge: "bg-fuchsia-500"
     },
-    RENTAL_ITEM: {
-        accent: "from-amber-500 to-orange-500",
-        glow: "shadow-amber-500/20",
-        badge: "bg-amber-500"
+    DECORATION: {
+        accent: "from-indigo-500 to-purple-500",
+        glow: "shadow-indigo-500/20",
+        badge: "bg-indigo-500"
+    },
+    CUSTOM: {
+        accent: "from-slate-500 to-gray-500",
+        glow: "shadow-slate-500/20",
+        badge: "bg-slate-500"
     },
 };
 

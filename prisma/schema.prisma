@@ -33,10 +33,16 @@ enum OrderStatus {
 }
 
 enum ProductType {
-  BOARD_FLOWER     // Papan Bunga (Requires Header, TargetName, Sender)
-  BOUQUET          // Hand Bouquet (Requires CardMessage)
-  STANDING_FLOWER
-  RENTAL_ITEM
+  BOARD_FLOWER     // Papan Bunga
+  BOARD_RUSTIC     // Papan Bunga Rustik
+  BOARD_ACRYLIC    // Papan Bunga Akrilik
+  BOUQUET          // Buket Bunga
+  BOUQUET_MONEY    // Buket Uang
+  BOUQUET_SNACK    // Buket Snack
+  TABLE_FLOWER     // Bunga Meja
+  STANDING_FLOWER  // Standing Flower
+  DECORATION       // Dekorasi Bunga
+  CUSTOM           // Custom Order
 }
 
 // --- MODELS ---

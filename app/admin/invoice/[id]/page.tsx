@@ -27,8 +27,8 @@ export default async function InvoicePage({ params }: InvoicePageProps) {
                     <div>
                         <h1 className="text-3xl font-bold mb-2">INVOICE</h1>
                         <p className="text-sm">HWest Florist Batam</p>
-                        <p className="text-sm text-gray-500">Ruko Grand Batam, Blok B No. 12</p>
-                        <p className="text-sm text-gray-500">Batam, Indonesia</p>
+                        <p className="text-sm text-gray-500">Pasar STC, Blk. E No.10, Sagulung</p>
+                        <p className="text-sm text-gray-500">Kota Batam, Kepulauan Riau 29439</p>
                         <p className="text-sm text-gray-500">+62 821-6951-2800</p>
                     </div>
                     <div className="text-right">

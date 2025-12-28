@@ -17,7 +17,7 @@ export const FloatingWhatsApp = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const phoneNumber = "6282169512800"; // Based on footer info
+    const phoneNumber = process.env.NEXT_PUBLIC_WA_PHONE || "6281270121705"; // Based on footer info
     const message = "Hello HWest Florist, I would like to order...";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 

@@ -227,9 +227,15 @@ export default function ShopClient({ products }: ShopClientProps) {
         const baseCats = [
             { id: "All", label: "Semua" },
             { id: "BOARD_FLOWER", label: "Papan Bunga" },
-            { id: "BOUQUET", label: "Buket" },
+            { id: "BOARD_RUSTIC", label: "Papan Rustik" },
+            { id: "BOARD_ACRYLIC", label: "Papan Akrilik" },
+            { id: "BOUQUET", label: "Buket Bunga" },
+            { id: "BOUQUET_MONEY", label: "Buket Uang" },
+            { id: "BOUQUET_SNACK", label: "Buket Snack" },
+            { id: "TABLE_FLOWER", label: "Bunga Meja" },
             { id: "STANDING_FLOWER", label: "Standing" },
-            { id: "RENTAL_ITEM", label: "Sewa & Dekor" }
+            { id: "DECORATION", label: "Dekorasi" },
+            { id: "CUSTOM", label: "Custom" }
         ];
         return baseCats.map(cat => ({
             ...cat,
@@ -437,7 +443,7 @@ export default function ShopClient({ products }: ShopClientProps) {
                     </div>
 
                     {/* Category Chips with Counts */}
-                    <div className="flex gap-2 overflow-x-auto no-scrollbar">
+                    <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2">
                         {categoriesWithCounts.map((cat) => (
                             <motion.button
                                 key={cat.id}

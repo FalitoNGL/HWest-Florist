@@ -65,10 +65,16 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
     };
 
     const PRODUCT_TYPES: { label: string; value: ProductType }[] = [
-        { label: "Papan", value: "BOARD_FLOWER" },
-        { label: "Buket", value: "BOUQUET" },
+        { label: "Papan Bunga", value: "BOARD_FLOWER" },
+        { label: "Papan Rustik", value: "BOARD_RUSTIC" },
+        { label: "Papan Akrilik", value: "BOARD_ACRYLIC" },
+        { label: "Buket Bunga", value: "BOUQUET" },
+        { label: "Buket Uang", value: "BOUQUET_MONEY" },
+        { label: "Buket Snack", value: "BOUQUET_SNACK" },
+        { label: "Bunga Meja", value: "TABLE_FLOWER" },
         { label: "Standing", value: "STANDING_FLOWER" },
-        { label: "Rental", value: "RENTAL_ITEM" },
+        { label: "Dekorasi", value: "DECORATION" },
+        { label: "Custom", value: "CUSTOM" },
     ];
 
     return (
